@@ -1,9 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { motion } from "framer-motion"
 import { Button } from "./button"
 import localFont from "next/font/local"
 
@@ -52,7 +51,7 @@ const safariPackages: Package[] = [
 
 export default function SafariCarousel() {
   const [isMobile, setIsMobile] = useState(false)
-  const [index, setIndex] = useState(0)
+  const scrollRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768)
@@ -61,76 +60,42 @@ export default function SafariCarousel() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  const total = safariPackages.length
-  const visibleCards = isMobile ? 1 : 3
-
-  // Loop logic — infinite scroll effect
-  const loopedPackages = [
-    safariPackages[total - 1],
-    ...safariPackages,
-    safariPackages[0],
-  ]
-
-  const next = () => {
-    setIndex((prev) => prev + 1)
-  }
-
-  const prev = () => {
-    setIndex((prev) => prev - 1)
-  }
-
-  useEffect(() => {
-    const interval = setInterval(next, 4000)
-    return () => clearInterval(interval)
-  }, [isMobile])
-
-  // Reset index seamlessly for infinite loop
-  useEffect(() => {
-    if (index === loopedPackages.length - visibleCards) {
-      setTimeout(() => setIndex(1), 300)
-    } else if (index === 0) {
-      setTimeout(() => setIndex(loopedPackages.length - visibleCards - 1), 300)
-    }
-  }, [index, loopedPackages.length, visibleCards])
-
   return (
-    <div className="relative w-full overflow-hidden bg-[#E9E1DA] py-10 px-6 md:px-16 lg:px-24">
-      <div className="relative max-w-6xl mx-auto">
-        <motion.div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{
-            transform: `translateX(-${index * (100 / visibleCards)}%)`,
-            width: `${(loopedPackages.length / visibleCards) * 100}%`,
-          }}
+    <div className="w-full bg-[#E9E1DA] py-10 px-6 md:px-16 lg:px-24">
+      <div className="max-w-7xl mx-auto">
+        {/* Scrollable Container */}
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-6 pb-8 scroll-smooth snap-x snap-mandatory custom-scrollbar"
         >
-          {loopedPackages.map((pkg, i) => (
+          {safariPackages.map((pkg) => (
             <motion.div
-              key={i}
+              key={pkg.id}
               whileHover={{ scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 250, damping: 15 }}
-              className="flex-shrink-0 w-full md:w-[28%] px-3"
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className="flex-shrink-0 snap-start bg-transparent border border-transparent rounded-xl shadow-xl hover:shadow-md transition-all duration-300 w-[80%] sm:w-[55%] md:w-[32%] lg:w-[28%]"
             >
-              <div className="bg-transparent border border-[#231f20] shadow-md overflow-hidden flex flex-col justify-between p-3 md:p-4 h-full rounded-lg hover:shadow-lg transition-shadow">
+              <div className="flex flex-col justify-between h-full">
                 {!pkg.cta && pkg.image && (
-                  <div className="relative h-40 md:h-78 w-full">
+                  <div className="relative h-44 md:h-56 w-full">
                     <Image
                       src={pkg.image}
                       alt={pkg.title}
                       fill
-                      className="rounded-md object-cover"
+                      className="object-cover rounded-t-xl"
                     />
                   </div>
                 )}
 
-                <div className="py-3 flex flex-col justify-between flex-grow">
+                <div className="p-4 flex flex-col justify-between flex-grow">
                   <div>
                     <h3
-                      className={`font-bold text-sm md:text-lg uppercase mb-1 ${AgrandirBold.className}`}
+                      className={`uppercase text-base md:text-lg font-bold mb-1 ${AgrandirBold.className}`}
                     >
                       {pkg.title}
                     </h3>
                     <p
-                      className={`text-sm md:text-base text-gray-800 mb-3 ${AgrandirRegular.className}`}
+                      className={`text-gray-700 text-sm md:text-base mb-3 ${AgrandirRegular.className}`}
                     >
                       {pkg.subtitle}
                     </p>
@@ -139,31 +104,18 @@ export default function SafariCarousel() {
                     ariaLabel={pkg.cta ? "Start Planning" : "Book"}
                     onClick={() => {}}
                   >
-                    {pkg.cta ? "START PLANNING" : "BOOK"}
+                    {pkg.cta ? "START PLANNING" : "BOOK NOW"}
                   </Button>
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Navigation Arrows */}
-        {!isMobile && (
-          <>
-            <button
-              onClick={prev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:scale-105 transition"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={next}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:scale-105 transition"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </>
-        )}
+        {/* Mobile hint */}
+        <p className="text-center text-xs mt-3 text-gray-600 md:hidden">
+          ↔ Swipe to explore
+        </p>
       </div>
     </div>
   )
