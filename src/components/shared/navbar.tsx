@@ -22,16 +22,16 @@ export const Navbar = () => {
       <ul
         className={`hidden tablet:hidden md:flex justify-center gap-20 text-lg ${AgrandirBold.className}`}
       >
-        <li>
+        <li className="border border-transparent border-3 hover:border-b-black transition-all">
           <Link href="/">SAFARIS</Link>
         </li>
-        <li>
+        <li className="border border-transparent border-3 hover:border-b-black transition-all">
           <Link href="/">ZANZIBAR</Link>
         </li>
-        <li>
+        <li className="border border-transparent border-3 hover:border-b-black transition-all">
           <Link href="/">KILIMANJARO</Link>
         </li>
-        <li>
+        <li className="border border-transparent border-3 hover:border-b-black transition-all">
           <Link href="/">DISCOVER TANZANIA</Link>
         </li>
       </ul>

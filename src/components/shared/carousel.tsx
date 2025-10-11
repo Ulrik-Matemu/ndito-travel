@@ -1,18 +1,18 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "./button"
 import localFont from "next/font/local"
 
 const AgrandirBold = localFont({
-    src: "../../../public/fonts/Agrandir-TextBold.otf",
+  src: "../../../public/fonts/Agrandir-TextBold.otf",
 })
 
 const AgrandirRegular = localFont({
-    src: "../../../public/fonts/Agrandir-Regular.otf",
+  src: "../../../public/fonts/Agrandir-Regular.otf",
 })
 
 type Package = {
@@ -53,7 +53,6 @@ const safariPackages: Package[] = [
 export default function SafariCarousel() {
   const [isMobile, setIsMobile] = useState(false)
   const [index, setIndex] = useState(0)
-  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768)
@@ -62,108 +61,109 @@ export default function SafariCarousel() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  const cardsPerView = isMobile ? 1 : 3
-  const totalCards = safariPackages.length
+  const total = safariPackages.length
+  const visibleCards = isMobile ? 1 : 3
 
-  const nextSlide = () => {
-    setIndex((prev) => (prev + 1) % totalCards)
+  // Loop logic — infinite scroll effect
+  const loopedPackages = [
+    safariPackages[total - 1],
+    ...safariPackages,
+    safariPackages[0],
+  ]
+
+  const next = () => {
+    setIndex((prev) => prev + 1)
   }
 
-  const prevSlide = () => {
-    setIndex((prev) => (prev - 1 + totalCards) % totalCards)
+  const prev = () => {
+    setIndex((prev) => prev - 1)
   }
 
-  // Auto-scroll when focused
   useEffect(() => {
-    const interval = setInterval(() => nextSlide(), 3000)
+    const interval = setInterval(next, 4000)
     return () => clearInterval(interval)
   }, [isMobile])
 
-  // Calculate slide width dynamically
-  const slideWidth = isMobile ? 100 : 20 // %
-  const translateX = -(index * slideWidth)
+  // Reset index seamlessly for infinite loop
+  useEffect(() => {
+    if (index === loopedPackages.length - visibleCards) {
+      setTimeout(() => setIndex(1), 300)
+    } else if (index === 0) {
+      setTimeout(() => setIndex(loopedPackages.length - visibleCards - 1), 300)
+    }
+  }, [index, loopedPackages.length, visibleCards])
 
   return (
-    <div className="relative w-full overflow-hidden bg-[#E9E1DA] py-10">
+    <div className="relative w-full overflow-hidden bg-[#E9E1DA] py-10 px-6 md:px-16 lg:px-24">
       <div className="relative max-w-6xl mx-auto">
         <motion.div
-          ref={containerRef}
           className="flex transition-transform duration-500 ease-in-out"
           style={{
-            transform: `translateX(${translateX}%)`,
-            width: `${(totalCards / cardsPerView) * 100}%`,
+            transform: `translateX(-${index * (100 / visibleCards)}%)`,
+            width: `${(loopedPackages.length / visibleCards) * 100}%`,
           }}
         >
-          {safariPackages.map((pkg) => (
-            <div
-              key={pkg.id}
-              className={`flex-shrink-0 w-[100%] md:w-[33.333%] px-3`}
+          {loopedPackages.map((pkg, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 250, damping: 15 }}
+              className="flex-shrink-0 w-full md:w-[28%] px-3"
             >
-              <div className="bg-transparent w-[24%] md:w-[100%] border border-[#231f20] shadow-md overflow-hidden flex flex-col justify-between p-4 h-full">
-                {/* Image */}
+              <div className="bg-transparent border border-[#231f20] shadow-md overflow-hidden flex flex-col justify-between p-3 md:p-4 h-full rounded-lg hover:shadow-lg transition-shadow">
                 {!pkg.cta && pkg.image && (
-                  <div className="relative h-98 w-full">
+                  <div className="relative h-40 md:h-78 w-full">
                     <Image
                       src={pkg.image}
                       alt={pkg.title}
                       fill
-                      className=""
+                      className="rounded-md object-cover"
                     />
                   </div>
                 )}
 
-                {/* Text/CTA */}
-                <div className="py-4 flex flex-col justify-between flex-grow">
+                <div className="py-3 flex flex-col justify-between flex-grow">
                   <div>
-                    <h3 className={`font-bold text-sm md:text-xl uppercase ${AgrandirBold.className}`}>
+                    <h3
+                      className={`font-bold text-sm md:text-lg uppercase mb-1 ${AgrandirBold.className}`}
+                    >
                       {pkg.title}
                     </h3>
-                    <p className={`md:text-xl text-gray-800 mb-2 ${AgrandirRegular.className}`}>{pkg.subtitle}</p>
+                    <p
+                      className={`text-sm md:text-base text-gray-800 mb-3 ${AgrandirRegular.className}`}
+                    >
+                      {pkg.subtitle}
+                    </p>
                   </div>
                   <Button
                     ariaLabel={pkg.cta ? "Start Planning" : "Book"}
-                    onClick={() => {
-                      // Add your booking or planning logic here
-                    }}
+                    onClick={() => {}}
                   >
                     {pkg.cta ? "START PLANNING" : "BOOK"}
                   </Button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
-        {/* Navigation arrows (desktop only) */}
+        {/* Navigation Arrows */}
         {!isMobile && (
           <>
             <button
-              onClick={prevSlide}
+              onClick={prev}
               className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:scale-105 transition"
             >
               <ChevronLeft size={20} />
             </button>
             <button
-              onClick={nextSlide}
+              onClick={next}
               className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:scale-105 transition"
             >
               <ChevronRight size={20} />
             </button>
           </>
         )}
-
-        {/* Dots */}
-        <div className="flex justify-center mt-6 space-x-2">
-          {Array.from({ length: totalCards }).map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setIndex(idx)}
-              className={`h-2 w-2 rounded-full transition-all ${
-                idx === index ? "bg-black w-4" : "bg-gray-400"
-              }`}
-            />
-          ))}
-        </div>
       </div>
     </div>
   )

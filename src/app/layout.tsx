@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Footer from "@/components/shared/footer";
 
 export const metadata: Metadata = {
   title: "Ndito Travel",
@@ -13,8 +14,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        {children}
+      <body className="min-h-screen flex flex-col bg-[#e8dfd7]">
+        {/* Main content fills remaining height */}
+        <main className="flex-grow">{children}</main>
+
+        {/* Footer stays pinned at bottom */}
+        <div className="mx-4 md:mx-16">
+          <Footer />
+        </div>
       </body>
     </html>
   );

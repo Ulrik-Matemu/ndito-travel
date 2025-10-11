@@ -5,20 +5,29 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { RectangleCard } from "@/components/shared/rectangleCard"
+import localFont from "next/font/local"
+
+const LoubagMedium = localFont({
+    src: "../../../public/fonts/Loubag-Medium.ttf",
+})
+
+const AgrandirRegular = localFont({
+    src: "../../../public/fonts/Agrandir-Regular.otf",
+})
 
 const slides = [
   {
-    image: "/images/serengeti.jpg",
+    image: "/photos/hot-air-balloon-safari.png",
     title: "Experience Serengeti from Above",
     desc: "Hot Air Balloon rides from $500/person."
   },
   {
-    image: "/images/zanzibar.jpg",
+    image: "/photos/zanzibar-feature.png",
     title: "Relax in Zanzibar’s Paradise",
     desc: "Luxury beach resorts and turquoise waters."
   },
   {
-    image: "/images/kilimanjaro.jpg",
+    image: "/photos/kilimanjaro-feature.png",
     title: "Climb Mount Kilimanjaro",
     desc: "Challenge yourself on Africa’s highest peak."
   }
@@ -39,7 +48,7 @@ export default function CarouselWithText() {
   }, [current])
 
   return (
-    <RectangleCard>
+    <RectangleCard className="md:px-0">
       {/* Layout Wrapper */}
       <div className="flex flex-col md:flex-row items-center justify-between w-full h-full gap-6 md:gap-0">
         {/* Image Carousel Section */}
@@ -62,15 +71,15 @@ export default function CarouselWithText() {
               <div className="absolute inset-0 bg-black/30" />
 
               {/* Text Over Image */}
-              <div className="absolute bottom-6 left-6 right-6 text-white drop-shadow-md">
-                <h3 className="text-base sm:text-lg font-semibold">{slide.title}</h3>
-                <p className="text-sm sm:text-base opacity-90">{slide.desc}</p>
+              <div className="absolute bottom-10 left-6 right-6 text-white drop-shadow-md">
+                <h3 className={`text-base sm:text-lg font-semibold text-2xl md:text-3xl ${LoubagMedium.className}`}>{slide.title}</h3>
+                <p className={`text-sm pt-2 sm:text-base opacity-90 text-white ${AgrandirRegular.className}`}>{slide.desc}</p>
               </div>
             </motion.div>
           ))}
 
           {/* Navigation Buttons */}
-          <div className="absolute inset-y-0 left-0 flex items-center justify-between w-full px-2">
+          <div className="absolute inset-y-0 left-0 z-10 flex items-center justify-between w-full px-2">
             <button
               onClick={prevSlide}
               className="p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition"
@@ -86,7 +95,7 @@ export default function CarouselWithText() {
           </div>
 
           {/* Indicators */}
-          <div className="absolute bottom-3 left-0 right-0 flex justify-center space-x-2">
+          <div className="absolute bottom-3 left-0 right-0 z-10 flex justify-center space-x-2">
             {slides.map((_, i) => (
               <div
                 key={i}
@@ -100,14 +109,10 @@ export default function CarouselWithText() {
         </div>
 
         {/* Side Text Section */}
-        <div className="w-full md:w-1/2 text-center md:text-left px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight text-gray-800">
-            The best way to explore Tanzania
+        <div className="w-full md:w-1/2 text-center md:text-left px-4 sm:px-16">
+          <h2 className={`text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight  ${LoubagMedium.className}`}>
+            The best way to explore Tanzania.
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-gray-600">
-            Discover breathtaking adventures, unique wildlife, and unforgettable landscapes —
-            all in one incredible country.
-          </p>
         </div>
       </div>
     </RectangleCard>

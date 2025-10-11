@@ -6,11 +6,13 @@ import CarouselWithText from "@/components/home/featured";
 
 export default function Home() {
   return (
-    <div className="p-4 md:p-16">
-      <Navbar />
-      <Hero />
-      <TripPackages />
-      <CarouselWithText />
-    </div>
+    <>
+      <div className="p-4 md:p-16 md:pb-0">
+        <Navbar />
+        <Hero />
+        <TripPackages />
+        <CarouselWithText />
+      </div>
+    </>
   );
 }
