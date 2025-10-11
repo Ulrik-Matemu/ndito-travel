@@ -34,7 +34,7 @@ export default function Footer() {
 
                     <div className={`mb-6 text-m text-gray-700 ${AgrandirRegular.className}`}>
                         <p>Arusha, Tanzania</p>
-                        <p>+255 760 903 468 | office@nditotravel.co.tz</p>
+                        <p>+255 758 883 554 | office@nditotravel.co.tz</p>
                     </div>
 
                     <div className="flex items-center w-full max-w-md mb-8">
