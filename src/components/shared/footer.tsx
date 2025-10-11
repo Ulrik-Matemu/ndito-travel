@@ -13,11 +13,11 @@ const AgrandirRegular = localFont({
 export default function Footer() {
   return (
     <footer className="w-full mt-auto">
-      <RectangleCard className="border-white rounded-md">
+      <RectangleCard className="px-0 rounded-md">
         <div
           className="
             relative w-full flex flex-col items-start justify-between
-            p-2 sm:p-8 md:p-10 
+            p-4 sm:p-8 md:p-0 
             rounded-t-2xl
             bg-[#e8dfd7]
           "
@@ -55,16 +55,16 @@ export default function Footer() {
 
           <div className="flex space-x-6">
             <a href="#" aria-label="Instagram">
-              <Instagram className="w-10 h-10 text-black hover:opacity-70" />
+              <Instagram className="w-10 h-10  hover:opacity-70" />
             </a>
             <a href="#" aria-label="Meta">
-              <Phone className="w-10 h-10 text-black hover:opacity-70" />
+              <Phone className="w-10 h-10  hover:opacity-70" />
             </a>
             <a href="#" aria-label="X (Twitter)">
-              <Twitter className="w-10 h-10 text-black hover:opacity-70" />
+              <Twitter className="w-10 h-10  hover:opacity-70" />
             </a>
             <a href="#" aria-label="TripAdvisor">
-              <Facebook className="w-10 h-10 text-black hover:opacity-70" />
+              <Facebook className="w-10 h-10 hover:opacity-70" />
             </a>
           </div>
         </div>
