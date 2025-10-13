@@ -23,7 +23,7 @@ export const Navbar = () => {
         className={`hidden tablet:hidden md:flex justify-center gap-20 text-lg ${AgrandirBold.className}`}
       >
         <li className="border border-transparent border-3 hover:border-b-black transition-all">
-          <Link href="/">SAFARIS</Link>
+          <Link href="/safaris">SAFARIS</Link>
         </li>
         <li className="border border-transparent border-3 hover:border-b-black transition-all">
           <Link href="/">ZANZIBAR</Link>
@@ -77,7 +77,7 @@ export const Navbar = () => {
                 className={`flex flex-col items-start gap-6 px-8 py-8 text-lg ${AgrandirBold.className}`}
               >
                 <li>
-                  <Link href="/" onClick={() => setIsOpen(false)}>
+                  <Link href="/safaris" onClick={() => setIsOpen(false)}>
                     SAFARIS
                   </Link>
                 </li>
