@@ -28,7 +28,7 @@ export const Button = ({
     <button
         aria-label={ariaLabel}
         onClick={onClick}
-        className={`px-8 py-2 text-xl rounded transition ${variantClasses[variant]} ${AgrandirBold.className}`}
+        className={`px-4 py-2 md:px-8 md:py-2 text-xl rounded transition ${variantClasses[variant]} ${AgrandirBold.className}`}
     >
         {children}
     </button>

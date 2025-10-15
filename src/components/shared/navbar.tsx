@@ -26,13 +26,13 @@ export const Navbar = () => {
           <Link href="/safaris">SAFARIS</Link>
         </li>
         <li className="border border-transparent border-3 hover:border-b-black transition-all">
-          <Link href="/">ZANZIBAR</Link>
+          <Link href="/zanzibar">ZANZIBAR</Link>
         </li>
         <li className="border border-transparent border-3 hover:border-b-black transition-all">
-          <Link href="/">KILIMANJARO</Link>
+          <Link href="/kilimanjaro">KILIMANJARO</Link>
         </li>
         <li className="border border-transparent border-3 hover:border-b-black transition-all">
-          <Link href="/">DISCOVER TANZANIA</Link>
+          <Link href="/discover-tanzania">DISCOVER TANZANIA</Link>
         </li>
       </ul>
 
@@ -82,17 +82,17 @@ export const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" onClick={() => setIsOpen(false)}>
+                  <Link href="/zanzibar" onClick={() => setIsOpen(false)}>
                     ZANZIBAR
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" onClick={() => setIsOpen(false)}>
+                  <Link href="/kilimanjaro" onClick={() => setIsOpen(false)}>
                     KILIMANJARO
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" onClick={() => setIsOpen(false)}>
+                  <Link href="/discover-tanzania" onClick={() => setIsOpen(false)}>
                     DISCOVER TANZANIA
                   </Link>
                 </li>
