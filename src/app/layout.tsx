@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/shared/footer";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: "Ndito Travel",
@@ -25,6 +26,7 @@ export default function RootLayout({
           
         </div>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
