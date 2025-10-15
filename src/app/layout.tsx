@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/shared/footer";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Ndito Travel",
@@ -21,7 +22,9 @@ export default function RootLayout({
         {/* Footer stays pinned at bottom */}
         <div className="mx-4 md:mx-16">
           <Footer />
+          
         </div>
+        <SpeedInsights />
       </body>
     </html>
   );
