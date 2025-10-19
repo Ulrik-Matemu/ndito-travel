@@ -83,12 +83,14 @@ export default function CarouselWithText() {
             <button
               onClick={prevSlide}
               className="p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition"
+              aria-label="Previous Slide"
             >
               <ChevronLeft />
             </button>
             <button
               onClick={nextSlide}
               className="p-2 rounded-full bg-black/30 hover:bg-black/50 text-white transition"
+              aria-label="Next Slide"
             >
               <ChevronRight />
             </button>
