@@ -1,6 +1,6 @@
 "use client"
 
-import { Mail, Phone, Instagram, Facebook, X, Globe, Twitter } from "lucide-react"
+import { Phone, Instagram, Facebook } from "lucide-react"
 import { RectangleCard } from "@/components/shared/rectangleCard"
 import { Button } from "./button"
 import { Logo } from "./logo"

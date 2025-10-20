@@ -1,16 +1,13 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { safariPackages } from "../../../data/safariTrips";
 import { Navbar } from "@/components/shared/navbar";
 import SafariHero from "@/components/safaris/hero";
 import localFont from "next/font/local";
 
-const LoubagMedium = localFont({
-    src: "../../../../public/fonts/Loubag-Medium.ttf",
-});
+
 
 const AgrandirRegular = localFont({
     src: "../../../../public/fonts/Agrandir-Regular.otf",

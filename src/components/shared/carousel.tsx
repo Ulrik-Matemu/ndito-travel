@@ -15,7 +15,7 @@ const AgrandirRegular = localFont({
 });
 
 export default function SafariCarousel() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [, setIsMobile] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
