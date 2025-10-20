@@ -17,7 +17,7 @@ export const Hero = () => {
     return (
         <>
             <RectangleCard>
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8 mt-10 md:mt-0">
                     <div className="w-full md:w-1/2">
                         <h1
                             className={`text-3xl md:text-5xl tracking-wider leading-[1.2] font-bold ${LoubagMedium.className}`}
