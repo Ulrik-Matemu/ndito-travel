@@ -9,7 +9,7 @@ const LoubagMedium = localFont({
 export const TripPackages = () => {
     return (
         <div className="my-12">
-            <h2 className={`text-2xl md:text-5xl tracking-wider text-center font-bold  ${LoubagMedium.className}`}>Discover Tanzania with us.   </h2>
+            <h2 className={`text-2xl md:text-3xl tracking-wider text-center font-bold  ${LoubagMedium.className}`}>Discover Tanzania with us.   </h2>
             <SafariCarousel /> 
         </div>
     )

@@ -48,7 +48,7 @@ export default function CarouselWithText() {
   }, [current])
 
   return (
-    <RectangleCard className="md:px-0">
+    <RectangleCard className="md:px-18">
       {/* Layout Wrapper */}
       <div className="flex flex-col md:flex-row items-center justify-between w-full h-full gap-6 md:gap-0">
         {/* Image Carousel Section */}
@@ -112,7 +112,7 @@ export default function CarouselWithText() {
 
         {/* Side Text Section */}
         <div className="w-full md:w-1/2 text-center md:text-left px-4 sm:px-16">
-          <h2 className={`text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight  ${LoubagMedium.className}`}>
+          <h2 className={`text-2xl sm:text-3xl md:text-3xl font-semibold leading-tight  ${LoubagMedium.className}`}>
             The best way to explore Tanzania.
           </h2>
         </div>

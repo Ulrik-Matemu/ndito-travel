@@ -55,16 +55,13 @@ export default function Footer() {
                     </div>
 
                     <div className="flex space-x-6">
-                        <a href="#" aria-label="Instagram">
+                        <a href="https://www.instagram.com/nditotravel/?hl=en" aria-label="Instagram">
                             <Instagram className="w-10 h-10  hover:opacity-70" />
                         </a>
-                        <a href="#" aria-label="Meta">
+                        <a href="+255658883554" aria-label="Meta">
                             <Phone className="w-10 h-10  hover:opacity-70" />
                         </a>
-                        <a href="#" aria-label="X (Twitter)">
-                            <Twitter className="w-10 h-10  hover:opacity-70" />
-                        </a>
-                        <a href="#" aria-label="TripAdvisor">
+                        <a href="https://www.facebook.com/p/Ndito-Travel-100083375855257/" aria-label="TripAdvisor">
                             <Facebook className="w-10 h-10 hover:opacity-70" />
                         </a>
                     </div>

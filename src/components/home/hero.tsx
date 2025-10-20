@@ -31,7 +31,7 @@ export const Hero = () => {
                         </p>
                         <Button ariaLabel="Plan Trip" onClick={() => {}}>PLAN TRIP</Button>
                     </div>
-                    <div className="w-full md:w-1/2 flex justify-center">
+                    <div className="w-full md:w-1/2 flex flex-col items-center justify-center relative">
                         <Image
                             src="/photos/ndito-travel-cars.jpg"
                             alt="Ndito Travel Safari Cars"
@@ -40,6 +40,36 @@ export const Hero = () => {
                             className="w-full h-auto max-w-[400px] md:max-w-[600px] rounded-lg"
                             priority
                         />
+                        <div className="absolute bottom-4 right-4 flex gap-4 bg-white/80 rounded-lg p-2 shadow-md">
+                            <a
+                                href="https://share.google/OtFBIRdxriIEmnjDI"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Google Reviews"
+                            >
+                                <Image
+                                    src="/icons/search.png"
+                                    alt="Google"
+                                    width={32}
+                                    height={32}
+                                    className="hover:scale-110 transition-transform"
+                                />
+                            </a>
+                            <a
+                                href="https://www.tripadvisor.com/Attraction_Review-g297913-d25567874-Reviews-Ndito_Travel-Arusha_Arusha_Region.html"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Tripadvisor Reviews"
+                            >
+                                <Image
+                                    src="/icons/tripadvisor.png"
+                                    alt="Tripadvisor"
+                                    width={32}
+                                    height={32}
+                                    className="hover:scale-110 transition-transform"
+                                />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </RectangleCard>
