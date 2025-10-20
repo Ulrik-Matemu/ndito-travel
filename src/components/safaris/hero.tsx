@@ -17,7 +17,7 @@ const AgrandirRegular = localFont({
 export default function SafariHero({ photoSrc, heading, subheading }: { photoSrc: string; heading: string; subheading: string }): JSX.Element  {
     return (
         <>
-            <div className="relative h-[300px] md:h-[500px] w-full my-10 mb-2">
+            <div className="relative h-[300px] md:h-[500px] w-full my-20 md:my-10 mb-2">
                 <Image
                     src={photoSrc}
                     alt={heading}

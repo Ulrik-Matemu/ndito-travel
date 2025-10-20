@@ -7,7 +7,7 @@ const RushkFont = localFont({
 
 export const Logo = () => {
     return (
-        <Link href="/" className={`${RushkFont.className} text-3xl`}>
+        <Link href="/" className={`${RushkFont.className} text-2xl md:text-3xl`}>
             Ndito Travel
         </Link>
     );

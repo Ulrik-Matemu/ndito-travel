@@ -1,7 +1,6 @@
 // app/safari/data.ts
 
 export const safariPackages = [
-  
   {
     id: "1",
     slug: "tanzania-trip-2025",
@@ -69,6 +68,140 @@ export const safariPackages = [
       "Personal spending money for souvenirs etc.",
       "Energy food & beverages, alcoholic and soft drinks",
       "Additional hotel nights in Arusha or any city in Tanzania ($150 per room)"
+    ]
+  },
+
+  // --- New Package 1 ---
+  {
+    id: "2",
+    slug: "ngorongoro-crater-explorer",
+    title: "Ngorongoro Explorer",
+    duration: "3 Days Adventure",
+    difficulty: "Easy",
+    scenery: "Crater & Wildlife",
+    traffic: "Moderate",
+    images: [
+      "/photos/ngorongoro.jpg",
+      "/photos/ngorongoro.jpg",
+      "/photos/massai-village.jpg"
+    ],
+    days: [
+      {
+        title: "DAY 1: ARRIVAL & ARUSHA CITY TOUR",
+        time: "2–3 hours",
+        description:
+          "Arrival at Kilimanjaro Airport and transfer to Arusha for a city tour. Evening at leisure at your hotel.",
+        accommodation: "Hotel: Arusha Serena Lodge",
+        meals: "Dinner"
+      },
+      {
+        title: "DAY 2: NGORONGORO CRATER GAME DRIVE",
+        time: "Full day",
+        description:
+          "Drive to Ngorongoro Crater after breakfast. Full-day game drive exploring the crater and spotting wildlife. Return to lodge for overnight.",
+        accommodation: "Lodge: Ngorongoro Serena Safari Lodge",
+        meals: "Breakfast, Lunch, Dinner"
+      },
+      {
+        title: "DAY 3: LAKE MANYARA & DEPARTURE",
+        time: "4–5 hours",
+        description:
+          "Morning visit to Lake Manyara National Park for a short game drive. Return to Arusha and transfer to Kilimanjaro Airport for departure.",
+        accommodation: "N/A",
+        meals: "Breakfast"
+      }
+    ],
+    included: [
+      "All park entrance fees",
+      "Professional English-speaking guide",
+      "Safari 4x4 vehicle with pop-top roof",
+      "Accommodation as specified",
+      "Meals as per itinerary",
+      "Transfer from and to airport"
+    ],
+    excluded: [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Personal expenses and tips",
+      "Beverages not mentioned in itinerary"
+    ]
+  },
+
+  // --- New Package 2 ---
+  {
+    id: "3",
+    slug: "serengeti-hotballoon-adventure",
+    title: "Serengeti From Above",
+    duration: "5 Days Serengeti Safari",
+    difficulty: "Moderate",
+    scenery: "Savannah & Big Five",
+    traffic: "Low",
+    images: [
+      "/photos/hot-air-balloon-safari.png",
+      "/photos/hot-air-balloon-safari.png",
+      "/photos/hot-air-balloon.jpg"
+    ],
+    days: [
+      {
+        title: "DAY 1: ARRIVAL IN ARUSHA",
+        time: "N/A",
+        description:
+          "Pick up from Kilimanjaro Airport and transfer to your lodge in Arusha for overnight rest.",
+        accommodation: "Hotel: Arusha Serena Lodge",
+        meals: "Dinner"
+      },
+      {
+        title: "DAY 2: DRIVE TO SERENGETI NATIONAL PARK",
+        time: "6–7 hours",
+        description:
+          "Drive through the Ngorongoro Highlands to Serengeti National Park. Enjoy first game drive en route. Overnight at Serengeti Lodge.",
+        accommodation: "Camp: Serengeti Heritage Camp",
+        meals: "Lunch and Dinner"
+      },
+      {
+        title: "DAY 3: SERENGETI GAME DRIVE",
+        time: "Full day",
+        description:
+          "Full-day game drive in Serengeti exploring the Big Five and savannah landscapes. Overnight at Serengeti Heritage Camp.",
+        accommodation: "Camp: Serengeti Heritage Camp",
+        meals: "Breakfast, Lunch, Dinner"
+      },
+      {
+        title: "DAY 4: HOT AIR BALLOON SAFARI",
+        time: "Early morning",
+        description:
+          "Hot air balloon flight over Serengeti at sunrise, followed by a champagne breakfast. Afternoon game drive and return to lodge.",
+        accommodation: "Camp: Serengeti Heritage Camp",
+        meals: "Breakfast, Lunch, Dinner"
+      },
+      {
+        title: "DAY 5: DEPARTURE",
+        time: "N/A",
+        description:
+          "Drive back to Arusha after breakfast and transfer to Kilimanjaro Airport for departure.",
+        accommodation: "N/A",
+        meals: "Breakfast"
+      }
+    ],
+    included: [
+      "Safari trip according to itinerary",
+      "Accommodation in lodges/camps",
+      "Meals as per itinerary",
+      "Professional English-speaking guide",
+      "4x4 Land Cruiser with pop-top roof",
+      "Hot air balloon safari",
+      "All park entrance fees",
+      "Drinking water",
+      "Transfers to and from airport"
+    ],
+    excluded: [
+      "International flights",
+      "Visa fees",
+      "Travel insurance",
+      "Tips for guide and driver",
+      "Personal expenses",
+      "Alcoholic drinks"
     ]
   }
 ];
