@@ -35,7 +35,7 @@ export default function SafariHero({ photoSrc, heading, subheading }: { photoSrc
                         <p className={`text-white text-md md:text-2xl my-4 drop-shadow ${AgrandirRegular.className}`}>
                             {subheading}
                         </p>
-                        <Button ariaLabel="Plan Trip" onClick={() => { location.href = "https://wa.me/255758883554"; }} variant="secondary">
+                        <Button ariaLabel="Plan Trip" onClick={() => { location.href = "https://wa.me/255658883554"; }} variant="secondary">
                             <div className="flex items-center">
                                 <span className="mr-2">CHAT ON WHATSAPP</span>
                                 <Image

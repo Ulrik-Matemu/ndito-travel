@@ -28,7 +28,7 @@ export default function Footer() {
                         <div className="pb-8">
                             <Logo />
                         </div>
-                        <Button onClick={() => { location.href = "https://wa.me/255758883554"; }} ariaLabel="Plan Trip">
+                        <Button onClick={() => { location.href = "https://wa.me/255658883554"; }} ariaLabel="Plan Trip">
                             <div className="flex items-center">
                                 <span className="mr-2">CHAT ON WHATSAPP</span>
                                 <Image

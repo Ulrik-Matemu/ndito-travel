@@ -29,7 +29,7 @@ export const Hero = () => {
                         >
                             Explore breathtaking landscapes, encounter incredible wildlife, and immerse yourself in the heart of Africa.
                         </p>
-                        <Button ariaLabel="Plan Trip" onClick={() => { location.href = "https://wa.me/255758883554"; }}>
+                        <Button ariaLabel="Plan Trip" onClick={() => { location.href = "https://wa.me/255658883554"; }}>
                             <div className="flex items-center">
                                 <span className="mr-2">CHAT ON WHATSAPP</span>
                                 <Image
