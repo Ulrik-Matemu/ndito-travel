@@ -70,7 +70,7 @@ export default function SafariCarousel() {
                     className="bg-transparent hover:bg-white hover:text-black border border-white text-white text-sm font-semibold px-4 py-2 rounded-full hover:bg-white transition"
                     aria-label={`Read more about ${pkg.title}`}
                   >
-                    Read More
+                    View Trip
                   </button>
                 </Link>
               </div>

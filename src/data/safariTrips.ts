@@ -128,7 +128,7 @@ export const safariPackages = [
     ]
   },
 
-  // --- New Package 2 ---
+  // --- New Package Here 2 ---
   {
     id: "3",
     slug: "serengeti-hotballoon-adventure",

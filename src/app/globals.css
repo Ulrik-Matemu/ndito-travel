@@ -42,3 +42,8 @@ nav li {
   background-color: #8c7e73;
 }
 
+.hover\:scale-105 {
+  transform: scale(1.05);
+}
+
+

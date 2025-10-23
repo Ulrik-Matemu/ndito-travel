@@ -14,7 +14,7 @@ const AgrandirRegular = localFont({
     src: "../../../public/fonts/Agrandir-Regular.otf",
 });
 
-export default function SafariHero({ photoSrc, heading, subheading }: { photoSrc: string; heading: string; subheading: string }): JSX.Element  {
+export default function SafariHero({ photoSrc, heading, subheading }: { photoSrc: string; heading: string; subheading: string }): JSX.Element {
     return (
         <>
             <div className="relative h-[300px] md:h-[500px] w-full my-20 md:my-10 mb-2">
@@ -35,7 +35,18 @@ export default function SafariHero({ photoSrc, heading, subheading }: { photoSrc
                         <p className={`text-white text-md md:text-2xl my-4 drop-shadow ${AgrandirRegular.className}`}>
                             {subheading}
                         </p>
-                        <Button ariaLabel="Plan Trip" onClick={() => {}} variant="secondary">PLAN TRIP</Button>
+                        <Button ariaLabel="Plan Trip" onClick={() => { location.href = "https://wa.me/255758883554"; }} variant="secondary">
+                            <div className="flex items-center">
+                                <span className="mr-2">CHAT ON WHATSAPP</span>
+                                <Image
+                                    src="/icons/whatsapp.png"
+                                    alt="Arrow Right"
+                                    width={24}
+                                    height={24}
+                                    className="ml-2"
+                                />
+                            </div>
+                        </Button>
                     </div>
                 </div>
             </div>

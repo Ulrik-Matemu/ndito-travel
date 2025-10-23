@@ -4,6 +4,7 @@ import { Phone, Instagram, Facebook } from "lucide-react"
 import { RectangleCard } from "@/components/shared/rectangleCard"
 import { Button } from "./button"
 import { Logo } from "./logo"
+import Image from "next/image"
 import localFont from "next/font/local"
 
 const AgrandirRegular = localFont({
@@ -27,8 +28,17 @@ export default function Footer() {
                         <div className="pb-8">
                             <Logo />
                         </div>
-                        <Button onClick={() => { }} ariaLabel="Plan Trip">
-                            PLAN TRIP
+                        <Button onClick={() => { location.href = "https://wa.me/255758883554"; }} ariaLabel="Plan Trip">
+                            <div className="flex items-center">
+                                <span className="mr-2">CHAT ON WHATSAPP</span>
+                                <Image
+                                    src="/icons/whatsapp.png"
+                                    alt="Arrow Right"
+                                    width={24}
+                                    height={24}
+                                    className="ml-2"
+                                />
+                            </div>
                         </Button>
                     </div>
 
@@ -65,7 +75,7 @@ export default function Footer() {
                             <Facebook className="w-10 h-10 hover:opacity-70" />
                         </a>
                     </div>
-                    
+
                 </div>
             </RectangleCard>
         </footer>

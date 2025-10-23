@@ -29,11 +29,22 @@ export const Hero = () => {
                         >
                             Explore breathtaking landscapes, encounter incredible wildlife, and immerse yourself in the heart of Africa.
                         </p>
-                        <Button ariaLabel="Plan Trip" onClick={() => {}}>PLAN TRIP</Button>
+                        <Button ariaLabel="Plan Trip" onClick={() => { location.href = "https://wa.me/255758883554"; }}>
+                            <div className="flex items-center">
+                                <span className="mr-2">CHAT ON WHATSAPP</span>
+                                <Image
+                                    src="/icons/whatsapp.png"
+                                    alt="Arrow Right"
+                                    width={24}
+                                    height={24}
+                                    className="ml-2"
+                                />
+                            </div>
+                        </Button>
                     </div>
                     <div className="w-full md:w-1/2 flex flex-col items-center justify-center relative">
                         <Image
-                            src="/photos/ndito-travel-cars.jpg"
+                            src="/photos/ndito-travel-cars.webp"
                             alt="Ndito Travel Safari Cars"
                             width={600}
                             height={300}
