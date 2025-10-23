@@ -17,17 +17,17 @@ const AgrandirRegular = localFont({
 
 const slides = [
   {
-    image: "/photos/hot-air-balloon-safari.png",
+    image: "/photos/hot-air-balloon-safari.webp",
     title: "Experience Serengeti from Above",
     desc: "Hot Air Balloon rides from $500/person."
   },
   {
-    image: "/photos/zanzibar-feature.png",
+    image: "/photos/zanzibar-feature.webp",
     title: "Relax in Zanzibar’s Paradise",
     desc: "Luxury beach resorts and turquoise waters."
   },
   {
-    image: "/photos/kilimanjaro-feature.png",
+    image: "/photos/kilimanjaro-feature.webp",
     title: "Climb Mount Kilimanjaro",
     desc: "Challenge yourself on Africa’s highest peak."
   }

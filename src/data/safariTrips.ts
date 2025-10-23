@@ -10,7 +10,7 @@ export const safariPackages = [
     scenery: "Good",
     traffic: "High",
     images: [
-      "/photos/safari-package.png",
+      "/photos/safari-package.webp",
       "/photos/ngorongoro.webp",
     ],
     days: [
@@ -138,8 +138,8 @@ export const safariPackages = [
     scenery: "Savannah & Big Five",
     traffic: "Low",
     images: [
-      "/photos/hot-air-balloon-safari.png",
-      "/photos/hot-air-balloon-safari.png",
+      "/photos/hot-air-balloon-safari.webp",
+      "/photos/hot-air-balloon-safari.webp",
       "/photos/hot-air-balloon.webp"
     ],
     days: [
