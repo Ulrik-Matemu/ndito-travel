@@ -14,7 +14,7 @@ export const ShowCase = () => {
                 </div>
                 <div className="md:w-1/2 w-full">
                     <Image
-                        src="/photos/baby-elephant-safari-nditotravel.jpg"
+                        src="/photos/baby-elephant-safari-nditotravel.webp"
                         alt="Baby Elephant"
                         width={1200}
                         height={800}

@@ -11,7 +11,7 @@ export const safariPackages = [
     traffic: "High",
     images: [
       "/photos/safari-package.png",
-      "/photos/ngorongoro.jpg",
+      "/photos/ngorongoro.webp",
     ],
     days: [
       {
@@ -81,9 +81,9 @@ export const safariPackages = [
     scenery: "Crater & Wildlife",
     traffic: "Moderate",
     images: [
-      "/photos/ngorongoro.jpg",
-      "/photos/ngorongoro.jpg",
-      "/photos/massai-village.jpg"
+      "/photos/ngorongoro.webp",
+      "/photos/ngorongoro.webp",
+      "/photos/massai-village.webp"
     ],
     days: [
       {
@@ -140,7 +140,7 @@ export const safariPackages = [
     images: [
       "/photos/hot-air-balloon-safari.png",
       "/photos/hot-air-balloon-safari.png",
-      "/photos/hot-air-balloon.jpg"
+      "/photos/hot-air-balloon.webp"
     ],
     days: [
       {
