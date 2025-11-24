@@ -4,7 +4,6 @@ import { Hero } from "@/components/home/hero";
 import { TripPackages } from "@/components/home/trip-packages";
 import CarouselWithText from "@/components/home/featured";
 import { TextArea } from "@/components/shared/textArea";
-import PageContentWrapper from "@/components/home/pageContent";
 
 
 export default function Home() {

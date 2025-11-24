@@ -108,7 +108,7 @@ export default function Footer() {
                                     Have Questions?
                                 </h3>
                                 <p className={`text-sm text-gray-600 ${AgrandirRegular.className}`}>
-                                    We'd love to hear from you
+                                    {"We'd love to hear from you"}
                                 </p>
                             </div>
                             <div className="flex items-stretch shadow-sm">

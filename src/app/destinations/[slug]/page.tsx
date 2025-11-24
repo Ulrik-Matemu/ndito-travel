@@ -1,6 +1,5 @@
 // /app/destinations/[slug]/page.tsx
 import { safariDestinations } from "@/data/destinations";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { DestinationImages } from "@/components/shared/destinationImages";
 import { Navbar } from "@/components/shared/navbar";
