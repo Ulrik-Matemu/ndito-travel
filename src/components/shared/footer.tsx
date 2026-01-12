@@ -65,7 +65,7 @@ export default function Footer() {
                                     Contact
                                 </h3>
                                 <div className={`text-sm text-gray-700 space-y-2 ${AgrandirRegular.className}`}>
-                                    <p className="leading-relaxed">+255 758 883 554</p>
+                                    <p className="leading-relaxed">+255 658 883 554</p>
                                     <p className="leading-relaxed">office@nditotravel.co.tz</p>
                                 </div>
                             </div>
