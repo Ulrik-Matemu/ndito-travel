@@ -1,0 +1,22 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Public Booking Submissions Rule
+    match /bookings/{bookingId} {
+      // Allow any website visitor to submit a new booking request
+      allow create: if request.resource.data.fullName is string
+                    && request.resource.data.email is string
+                    && request.resource.data.phone is string;
+
+      // Restrict read, update, and delete access to authenticated Ndito Travel admins only
+      allow read, update, delete: if request.auth != null;
+    }
+
+    // Default deny for all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

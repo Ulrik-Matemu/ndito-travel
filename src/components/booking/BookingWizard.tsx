@@ -1,0 +1,211 @@
+"use client";
+
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import {
+  BookingFormData,
+  initialFormData,
+  validateStep1,
+  validateStep2,
+  ValidationErrors,
+  BookingIntent,
+  TripCategory,
+} from "@/lib/bookingSchema";
+import { submitBooking } from "@/lib/booking";
+import { StepIndicator } from "./StepIndicator";
+import { Step1TripDetails } from "./Step1TripDetails";
+import { Step2YourInfo } from "./Step2YourInfo";
+import { Step3Confirm } from "./Step3Confirm";
+import { BookingSuccess } from "./BookingSuccess";
+import { motion, AnimatePresence } from "framer-motion";
+
+function WizardContent() {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState<BookingFormData>(initialFormData);
+  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookingId, setBookingId] = useState<string | null>(null);
+
+  const searchParams = useSearchParams();
+
+  // Smart Context Engine: Auto-detect visitor intent & pre-fill options from URL query
+  useEffect(() => {
+    const pkg = searchParams.get("package");
+    const intentParam = searchParams.get("intent") as BookingIntent | null;
+    const routeParam = searchParams.get("route");
+    const destinationParam = searchParams.get("destination");
+
+    setFormData((prev) => {
+      const updated = { ...prev };
+
+      if (pkg) {
+        updated.bookingMode = "package";
+        updated.packageSlug = pkg;
+        updated.intent = "safari_package";
+      } else if (intentParam) {
+        updated.intent = intentParam;
+        if (intentParam === "kilimanjaro") {
+          updated.bookingMode = "custom";
+          updated.customItinerary = {
+            ...updated.customItinerary,
+            tripCategory: "kilimanjaro" as TripCategory,
+            kilimanjaroRoute: routeParam || "Machame Route (7 Days - High Summit Success)",
+          };
+        } else if (intentParam === "zanzibar") {
+          updated.bookingMode = "custom";
+          updated.customItinerary = {
+            ...updated.customItinerary,
+            tripCategory: "zanzibar" as TripCategory,
+            destinations: ["Zanzibar Beaches"],
+          };
+        }
+      }
+
+      if (destinationParam) {
+        updated.bookingMode = "custom";
+        const formattedDest = destinationParam
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (l) => l.toUpperCase());
+        if (!updated.customItinerary.destinations.includes(formattedDest)) {
+          updated.customItinerary = {
+            ...updated.customItinerary,
+            destinations: [...updated.customItinerary.destinations, formattedDest],
+          };
+        }
+      }
+
+      return updated;
+    });
+  }, [searchParams]);
+
+  const updateFormData = (fields: Partial<BookingFormData>) => {
+    setFormData((prev) => ({ ...prev, ...fields }));
+    // Clear errors for updated fields
+    setErrors((prev) => {
+      const copy = { ...prev };
+      Object.keys(fields).forEach((key) => {
+        delete copy[key as keyof BookingFormData];
+      });
+      delete copy.destinations;
+      return copy;
+    });
+  };
+
+  const handleNextStep1 = () => {
+    const validationErrors = validateStep1(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setErrors({});
+    setStep(2);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleNextStep2 = () => {
+    const validationErrors = validateStep2(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setErrors({});
+    setStep(3);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const result = await submitBooking(formData);
+      if (result.success) {
+        setBookingId(result.bookingId);
+        setStep(4);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    } catch (error) {
+      console.error("Booking submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="max-w-3xl mx-auto">
+      <StepIndicator currentStep={step} />
+
+      <AnimatePresence mode="wait">
+        {step === 1 && (
+          <motion.div
+            key="step1"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Step1TripDetails
+              formData={formData}
+              onChange={updateFormData}
+              onNext={handleNextStep1}
+              errors={errors}
+            />
+          </motion.div>
+        )}
+
+        {step === 2 && (
+          <motion.div
+            key="step2"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Step2YourInfo
+              formData={formData}
+              onChange={updateFormData}
+              onNext={handleNextStep2}
+              onBack={() => setStep(1)}
+              errors={errors}
+            />
+          </motion.div>
+        )}
+
+        {step === 3 && (
+          <motion.div
+            key="step3"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Step3Confirm
+              formData={formData}
+              onBack={() => setStep(2)}
+              onEditStep={(targetStep) => setStep(targetStep)}
+              onSubmit={handleSubmit}
+              isSubmitting={isSubmitting}
+            />
+          </motion.div>
+        )}
+
+        {step === 4 && (
+          <motion.div
+            key="step4"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <BookingSuccess bookingId={bookingId} formData={formData} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export function BookingWizard() {
+  return (
+    <Suspense fallback={<div className="text-center py-12 text-gray-500">Loading booking wizard...</div>}>
+      <WizardContent />
+    </Suspense>
+  );
+}

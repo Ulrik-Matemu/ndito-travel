@@ -1,89 +1,189 @@
 "use client";
-import Image from "next/image";
-import { RectangleCard } from "@/components/shared/rectangleCard";
-import localFont from "next/font/local";
-import { Button } from "@/components/shared/button";
 
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import localFont from "next/font/local";
+import { MapPin, Compass, Users, Map } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { AnimatedCounter } from "@/components/shared/AnimatedCounter";
 
 const LoubagMedium = localFont({
-    src: "../../../public/fonts/Loubag-Medium.ttf",
+  src: "../../../public/fonts/Loubag-Medium.ttf",
 });
 
 const AgrandirRegular = localFont({
-    src: "../../../public/fonts/Agrandir-Regular.otf",
+  src: "../../../public/fonts/Agrandir-Regular.otf",
 });
 
+const HERO_IMAGES = [
+  {
+    src: "/photos/ndito-travel-cars.webp",
+    alt: "Ndito Travel safari fleet at sunset",
+  },
+  {
+    src: "/photos/zanzibar-beach-nditotravel-zanzibar.webp",
+    alt: "Pristine Zanzibar tropical beach",
+  },
+  {
+    src: "/photos/kilimanjaro-hero-nditotravel.webp",
+    alt: "Majestic Mount Kilimanjaro view",
+  },
+  {
+    src: "/photos/serengeti-the-great-migration.webp",
+    alt: "Wildlife migration in Serengeti",
+  },
+  {
+    src: "/photos/Arusha_National_Park_Mount_Meru_Girrafe_11.webp",
+    alt: "Wildlife near Mount Meru",
+  },
+];
+
 export const Hero = () => {
-    return (
-        <>
-            <RectangleCard>
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8 mt-10 md:mt-0">
-                    <div className="w-full md:w-1/2">
-                        <h1
-                            className={`text-3xl md:text-5xl tracking-wider leading-[1.2] font-bold ${LoubagMedium.className}`}
-                        >
-                            A Safari With <br /> Ndito Travel
-                        </h1>
-                        <p
-                            className={`text-base md:text-xl my-4 ${AgrandirRegular.className}`}
-                        >
-                            Explore breathtaking landscapes, encounter incredible wildlife, and immerse yourself in the heart of Africa.
-                        </p>
-                        <Button ariaLabel="Plan Trip" onClick={() => { location.href = "https://wa.me/255658883554"; }}>
-                            <div className="flex items-center">
-                                <span className="mr-2">CHAT ON WHATSAPP</span>
-                                <Image
-                                    src="/icons/whatsapp.png"
-                                    alt="Arrow Right"
-                                    width={24}
-                                    height={24}
-                                    className="ml-2"
-                                />
-                            </div>
-                        </Button>
-                    </div>
-                    <div className="w-full md:w-1/2 flex flex-col items-center justify-center relative">
-                        <Image
-                            src="/photos/ndito-travel-cars.webp"
-                            alt="Ndito Travel Safari Cars"
-                            width={600}
-                            height={300}
-                            className="w-full h-auto max-w-[400px] md:max-w-[600px] rounded-lg"
-                            priority
-                        />
-                        <div className="absolute bottom-4 right-4 flex gap-4 bg-white/80 rounded-lg p-2 shadow-md">
-                            <a
-                                href="https://share.google/OtFBIRdxriIEmnjDI"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Google Reviews"
-                            >
-                                <Image
-                                    src="/icons/search.png"
-                                    alt="Google"
-                                    width={32}
-                                    height={32}
-                                    className="hover:scale-110 transition-transform"
-                                />
-                            </a>
-                            <a
-                                href="https://www.tripadvisor.com/Attraction_Review-g297913-d25567874-Reviews-Ndito_Travel-Arusha_Arusha_Region.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label="Tripadvisor Reviews"
-                            >
-                                <Image
-                                    src="/icons/tripadvisor.png"
-                                    alt="Tripadvisor"
-                                    width={32}
-                                    height={32}
-                                    className="hover:scale-110 transition-transform"
-                                />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </RectangleCard>
-        </>
-    )
-}
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % HERO_IMAGES.length);
+    }, 6000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="relative w-full min-h-[92vh] lg:min-h-screen flex flex-col justify-between pt-28 pb-6 md:pb-10 px-4 sm:px-8 lg:px-16 overflow-hidden bg-[#231f20] text-white">
+      {/* Background Cover Image Carousel */}
+      <div className="absolute inset-0 z-0 bg-[#231f20]">
+        <AnimatePresence>
+          <motion.div
+            key={currentImageIndex}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1.0 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              opacity: { duration: 1.5, ease: "easeInOut" },
+              scale: { duration: 7, ease: "easeOut" },
+            }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src={HERO_IMAGES[currentImageIndex].src}
+              alt={HERO_IMAGES[currentImageIndex].alt}
+              fill
+              priority={currentImageIndex === 0}
+              sizes="100vw"
+              className="object-cover object-center brightness-75"
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Dark Overlay Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/50 pointer-events-none z-[1]" />
+
+      {/* Hero Content (Middle Section) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: [0.21, 0.47, 0.32, 0.98] }}
+        className="relative flex gap-4 z-10 max-w-4xl my-auto md:pt-84"
+      >
+        <h1
+          className={`text-4xl sm:text-6xl md:text-5xl lg:text-5xl tracking-tight leading-tight font-extrabold text-white drop-shadow-lg ${LoubagMedium.className}`}
+        >
+          A SAFARI WITH NDITO TRAVEL
+        </h1>
+
+        {/* Review Badges Pill */}
+        <div className="flex items-center gap-4 bg-black/50 backdrop-blur-md px-4 h-10 md:mt-3 rounded-2xl border border-white/20 w-max shadow-lg">
+          <div className="flex items-center gap-2">
+            <a
+              href="https://share.google/OtFBIRdxriIEmnjDI"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ndito Travel Google Reviews"
+              className="hover:scale-110 transition-transform"
+            >
+              <Image src="/icons/search.png" alt="Google" width={20} height={20} />
+            </a>
+            <a
+              href="https://www.tripadvisor.com/Attraction_Review-g297913-d25567874-Reviews-Ndito_Travel-Arusha_Arusha_Region.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Ndito Travel TripAdvisor Reviews"
+              className="hover:scale-110 transition-transform"
+            >
+              <Image src="/icons/tripadvisor.png" alt="TripAdvisor" width={20} height={20} />
+            </a>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Integrated Bottom Stats Overlay Bar (Inspired by hero-sample.png) */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="relative z-10 w-full pt-6 border-t border-white/20 mt-auto"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 items-start">
+          
+          {/* Column 1: Info / Brand Mission */}
+          <div className="pr-0 lg:pr-6 space-y-4">
+            <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
+              <MapPin size={16} /> LOCAL TANZANIAN EXPERTS
+            </div>
+            <p className={`text-xs sm:text-sm text-gray-300 leading-relaxed ${AgrandirRegular.className}`}>
+              Ndito Travel supports authentic wildlife safaris, eco-friendly conservation, and unforgettable Tanzanian adventures.
+            </p>
+          </div>
+
+          {/* Column 2: Stat 1 */}
+          <div className="lg:border-l border-white/20 lg:pl-6 space-y-4">
+            <span className="text-xs uppercase tracking-wider text-gray-300 font-bold block flex items-center gap-1.5">
+              <Compass size={14} className="text-amber-400" /> SAFARIS COMPLETED
+            </span>
+            <div className="flex items-baseline gap-2">
+              <AnimatedCounter
+                target={500}
+                suffix="+"
+                className={`text-3xl sm:text-4xl lg:text-7xl font-extrabold text-white ${LoubagMedium.className}`}
+              />
+              <span className="text-xs text-gray-300 font-semibold">safaris</span>
+            </div>
+          </div>
+
+          {/* Column 3: Stat 2 */}
+          <div className="lg:border-l border-white/20 lg:pl-6 space-y-4">
+            <span className="text-xs uppercase tracking-wider text-gray-300 font-bold block flex items-center gap-1.5">
+              <Users size={14} className="text-amber-400" /> HAPPY TRAVELERS
+            </span>
+            <div className="flex items-baseline gap-2">
+              <AnimatedCounter
+                target={1000}
+                suffix="+"
+                className={`text-3xl sm:text-4xl lg:text-7xl font-extrabold text-white ${LoubagMedium.className}`}
+              />
+              <span className="text-xs text-gray-300 font-semibold">guests</span>
+            </div>
+          </div>
+
+          {/* Column 4: Stat 3 */}
+          <div className="lg:border-l border-white/20 lg:pl-6 lg:ml-12 space-y-4">
+            <span className="text-xs uppercase tracking-wider text-gray-300 font-bold block flex items-center gap-1.5">
+              <Map size={14} className="text-amber-400" /> UNIQUE DESTINATIONS
+            </span>
+            <div className="flex items-baseline gap-2">
+              <AnimatedCounter
+                target={30}
+                suffix="+"
+                className={`text-3xl sm:text-4xl lg:text-7xl font-extrabold text-white ${LoubagMedium.className}`}
+              />
+              <span className="text-xs text-gray-300 font-semibold">national parks</span>
+            </div>
+          </div>
+
+        </div>
+      </motion.div>
+    </section>
+  );
+};

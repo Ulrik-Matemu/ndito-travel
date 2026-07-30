@@ -82,8 +82,8 @@ export const safariPackages = [
     traffic: "Moderate",
     images: [
       "/photos/ngorongoro.webp",
-      "/photos/ngorongoro.webp",
-      "/photos/massai-village.webp"
+      "/photos/ngorongoro-gate.webp",
+      "/photos/arusha-2-maasai-ndito1920x1280.webp"
     ],
     days: [
       {
@@ -139,8 +139,8 @@ export const safariPackages = [
     traffic: "Low",
     images: [
       "/photos/hot-air-balloon-safari.webp",
-      "/photos/hot-air-balloon-safari.webp",
-      "/photos/hot-air-balloon.webp"
+      "/photos/serengeti-the-great-migration.webp",
+      "/photos/serengeti-lion.webp"
     ],
     days: [
       {

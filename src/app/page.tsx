@@ -2,21 +2,72 @@
 import { Navbar } from "@/components/shared/navbar";
 import { Hero } from "@/components/home/hero";
 import { TripPackages } from "@/components/home/trip-packages";
+import { WhyNdito } from "@/components/home/WhyNdito";
 import CarouselWithText from "@/components/home/featured";
-import { TextArea } from "@/components/shared/textArea";
-
+import { ExperienceShowcase } from "@/components/home/ExperienceShowcase";
+import { Testimonials } from "@/components/home/Testimonials";
+import { CtaBanner } from "@/components/home/CtaBanner";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export default function Home() {
-  
   return (
     <>
-      <div className="p-4 md:p-16 md:pb-0">
-        <Navbar />
-        <Hero />
-        <TripPackages />
-        <TextArea heading="Why Choose Ndito Travel for Your Safari?" content="At Ndito Travel, we specialize in crafting unforgettable safari experiences in Tanzania. Our expert guides are passionate about wildlife and dedicated to ensuring your trip is both safe and exhilarating. We offer personalized itineraries that cater to your interests, whether you're a seasoned safari-goer or embarking on your first adventure. With Ndito Travel, you're not just booking a trip; you're creating lifelong memories." />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "TravelAgency",
+              "@id": "https://nditotravel.co.tz/#organization",
+              name: "Ndito Travel",
+              url: "https://nditotravel.co.tz",
+              logo: "https://nditotravel.co.tz/photos/ndito-travel-cars.webp",
+              description:
+                "Licensed Tanzanian tour operator specializing in wildlife safaris, Kilimanjaro climbs, and Zanzibar holidays.",
+              telephone: "+255658883554",
+              email: "office@nditotravel.co.tz",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Arusha",
+                addressRegion: "Arusha",
+                addressCountry: "TZ",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: -3.3869,
+                longitude: 36.683,
+              },
+              sameAs: [
+                "https://www.facebook.com/p/Ndito-Travel-100083375855257/",
+                "https://www.instagram.com/nditotravel/",
+                "https://www.tripadvisor.com/Attraction_Review-g297913-d25567874-Reviews-Ndito_Travel-Arusha_Arusha_Region.html",
+              ],
+              priceRange: "$$",
+              areaServed: {
+                "@type": "Country",
+                name: "Tanzania",
+              },
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://nditotravel.co.tz/#website",
+              url: "https://nditotravel.co.tz",
+              name: "Ndito Travel",
+              publisher: { "@id": "https://nditotravel.co.tz/#organization" },
+            },
+          ],
+        }}
+      />
+      <Navbar />
+      <Hero />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <WhyNdito />
         <CarouselWithText />
+        <ExperienceShowcase />
+        <TripPackages />
+        <Testimonials />
       </div>
+      <CtaBanner />
     </>
   );
 }

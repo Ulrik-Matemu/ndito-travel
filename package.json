@@ -4,17 +4,20 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@posthog/react": "^1.10.3",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
+    "firebase": "^12.16.0",
     "framer-motion": "^12.23.22",
     "gsap": "^3.13.0",
     "lucide-react": "^0.545.0",
     "next": "15.5.9",
+    "posthog-js": "^1.408.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-photo-view": "^1.2.7"

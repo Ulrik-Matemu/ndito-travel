@@ -131,7 +131,7 @@ export const safariDestinations = [
       winding alleys, spice markets, and a fusion of African, Arab, and European influences.
     `,
         location: { lat: -6.162, lng: 39.191 },
-        images: ["/photos/Aerial-wide-shot-of-Zanzibar-Island-Tanzania-1-1536x1025.webp", "/photos/Arab-Fort-Stone-Town-Zanzibar-Tanzania.webp.webp", "/photos/Embankment-with-guns-in-Zanzibars-Stone-Town-with-boats-on-the-ocean.webp.webp"],
+        images: ["/photos/Aerial-wide-shot-of-Zanzibar-Island-Tanzania-1-1536x1025.webp", "/photos/Arab-Fort-Stone-Town-Zanzibar-Tanzania.jpg.webp", "/photos/Embankment-with-guns-in-Zanzibars-Stone-Town-with-boats-on-the-ocean.jpg.webp"],
         seo: {
             title: "Stone Town Zanzibar | Ndito Travel",
             description:
@@ -148,7 +148,7 @@ export const safariDestinations = [
       snorkeling, and sunset views over the Indian Ocean.
     `,
         location: { lat: -5.726, lng: 39.295 },
-        images: ["/photos/kendwa-beach-zanzibar-1536x1025.webp.webp", "/photos/Nungwi_beach_header-992.webp"],
+        images: ["/photos/kendwa-beach-zanzibar-1536x1025.png.webp", "/photos/Nungwi_beach_header-992.webp"],
         seo: {
             title: "Nungwi & Kendwa Zanzibar | Ndito Travel",
             description:
@@ -335,7 +335,7 @@ export const safariDestinations = [
       offering cultural tours and serene sea views.
     `,
         location: { lat: -10.283, lng: 40.1 },
-        images: ["/photos/Mikindani-960x605-2.webp", "/photos/mikindani.", "/photos/Mikindani-960x604-1.webp"],
+        images: ["/photos/Mikindani-960x605-2.webp", "/photos/mikindani.webp", "/photos/Mikindani-960x604-1.webp"],
         seo: {
             title: "Mikindani Tanzania | Ndito Travel",
             description:
@@ -418,7 +418,7 @@ export const safariDestinations = [
       It lies beneath the active volcano Ol Doinyo Lengai.
     `,
         location: { lat: -2.5, lng: 36.0 },
-        images: ["/photos/Lake_Natron_Flamingos_Sunset_28.webp", "/photos/Lake-Natron-Tanzania-2-webp.webp", "/photos/Streams_from_Oldoinyo_Lengai_03.webp"],
+        images: ["/photos/Lake_Natron_Flamingos_Sunset_28.webp", "/photos/Lake-Natron-Tanzania-2-jpg.webp", "/photos/Streams_from_Oldoinyo_Lengai_03.webp"],
         seo: {
             title: "Lake Natron Tanzania | Ndito Travel",
             description:
@@ -499,7 +499,7 @@ export const safariDestinations = [
       Explore the Tanzanian shores of Lake Victoria, visit fishing villages, or take boat trips to Rubondo Island.
     `,
         location: { lat: -2.0, lng: 32.8 },
-        images: ["/photos/lake-victoria.webp", "/photos/rubondo-island.webp"],
+        images: ["/photos/Gombe_Stream_National_Park_Lake_Tanganyika_Shore)line_45.webp", "/photos/jambiani-boat.webp"],
         seo: {
             title: "Lake Victoria Tanzania | Ndito Travel",
             description:
@@ -515,7 +515,7 @@ export const safariDestinations = [
       Rubondo Island offers forest walks, chimpanzee sightings, and scenic boat rides on Lake Victoria.
     `,
         location: { lat: -2.33, lng: 31.8 },
-        images: ["/photos/rubondo-forest.webp", "/photos/rubondo-lake.webp"],
+        images: ["/photos/Mahale_Mountain_National_Park.webp", "/photos/Gombe_Stream_National_Park_Entrance_34.webp"],
         seo: {
             title: "Rubondo Island National Park | Ndito Travel Tanzania",
             description:
@@ -531,7 +531,7 @@ export const safariDestinations = [
       Mafia Island Marine Park is a diver’s paradise with coral reefs, whale sharks, and crystal-clear lagoons.
     `,
         location: { lat: -7.916, lng: 39.667 },
-        images: ["/photos/mafia-whaleshark.webp", "/photos/mafia-coral.webp"],
+        images: ["/photos/Maldives-diving-mnemba.webp", "/photos/mnemba-snorkling.webp"],
         seo: {
             title: "Mafia Island Tanzania | Ndito Travel",
             description:

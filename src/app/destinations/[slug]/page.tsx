@@ -1,79 +1,234 @@
-// /app/destinations/[slug]/page.tsx
 import { safariDestinations } from "@/data/destinations";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { DestinationImages } from "@/components/shared/destinationImages";
 import { Navbar } from "@/components/shared/navbar";
+import { Button } from "@/components/shared/button";
 import localFont from "next/font/local";
 import { TripPackages } from "@/components/home/trip-packages";
+import { MapPin, ChevronRight } from "lucide-react";
 
 const AgrandirRegular = localFont({
-    src: "../../../../public/fonts/Agrandir-Regular.otf",
+  src: "../../../../public/fonts/Agrandir-Regular.otf",
 });
 
 const LoubagMedium = localFont({
-    src: "../../../../public/fonts/Loubag-Medium.ttf",
+  src: "../../../../public/fonts/Loubag-Medium.ttf",
 });
 
+import { JsonLd } from "@/components/seo/JsonLd";
+
 export async function generateStaticParams() {
-    return safariDestinations.map((dest) => ({
-        slug: dest.slug,
-    }));
+  return safariDestinations.map((dest) => ({
+    slug: dest.slug,
+  }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-    const destination = safariDestinations.find((d) => d.slug === params.slug);
-    if (!destination) return {};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const destination = safariDestinations.find((d) => d.slug === slug);
+  if (!destination) return {};
 
-    return {
-        title: destination.seo.title,
-        description: destination.seo.description,
-        keywords: destination.seo.keywords,
-        openGraph: {
-            title: destination.seo.title,
-            description: destination.seo.description,
-            images: destination.images.map((src) => ({
-                url: src,
-            })),
-        },
-    };
+  const canonicalUrl = `https://nditotravel.co.tz/destinations/${slug}`;
+
+  return {
+    title: destination.seo.title,
+    description: destination.seo.description,
+    keywords: destination.seo.keywords.split(", "),
+    openGraph: {
+      title: destination.seo.title,
+      description: destination.seo.description,
+      url: canonicalUrl,
+      images: destination.images.map((src) => ({
+        url: src,
+        width: 1200,
+        height: 630,
+        alt: destination.name,
+      })),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: destination.seo.title,
+      description: destination.seo.description,
+      images: [destination.images[0]],
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
 }
 
-export default function DestinationPage({ params }: { params: { slug: string } }) {
-    const destination = safariDestinations.find((d) => d.slug === params.slug);
+export default async function DestinationPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const destination = safariDestinations.find((d) => d.slug === slug);
 
-    if (!destination) return notFound();
+  if (!destination) return notFound();
 
-    return (
-        <>
-            <div className="p-4 md:p-16 md:pb-0">
-                <Navbar />
+  return (
+    <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "TouristDestination",
+              name: destination.name,
+              description: destination.shortDescription,
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: destination.location.lat,
+                longitude: destination.location.lng,
+              },
+              image: destination.images,
+              touristType: ["Wildlife enthusiasts", "Adventure travelers", "Nature photographers"],
+              containedInPlace: {
+                "@type": "Country",
+                name: "Tanzania",
+              },
+            },
+            {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: "https://nditotravel.co.tz",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Safaris",
+                  item: "https://nditotravel.co.tz/safaris",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: destination.name,
+                  item: `https://nditotravel.co.tz/destinations/${destination.slug}`,
+                },
+              ],
+            },
+          ],
+        }}
+      />
+      <Navbar />
+      <article className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-28 pb-12">
+        {/* Breadcrumb Navigation */}
+        <nav aria-label="Breadcrumb" className="mb-6">
+          <ol className="flex items-center gap-1.5 text-xs sm:text-sm text-gray-700">
+            <li>
+              <Link href="/" className="hover:text-black hover:underline">
+                Home
+              </Link>
+            </li>
+            <ChevronRight size={14} className="text-gray-400" />
+            <li>
+              <Link href="/safaris" className="hover:text-black hover:underline">
+                Safaris
+              </Link>
+            </li>
+            <ChevronRight size={14} className="text-gray-400" />
+            <li className="font-semibold text-amber-900 truncate" aria-current="page">
+              {destination.name}
+            </li>
+          </ol>
+        </nav>
+
+        {/* Heading Header */}
+        <header className="mb-8">
+          <h1
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-4 ${LoubagMedium.className}`}
+          >
+            {destination.name}
+          </h1>
+          <p
+            className={`text-lg sm:text-xl md:text-2xl text-gray-700 font-medium max-w-3xl leading-relaxed ${AgrandirRegular.className}`}
+          >
+            {destination.shortDescription}
+          </p>
+        </header>
+
+        {/* Gallery Images */}
+        <DestinationImages images={destination.images} name={destination.name} />
+
+        {/* Description Body */}
+        <div className="my-10 bg-[#f6f2ee] p-6 sm:p-10 rounded-2xl border border-black/5 shadow-xs">
+          <h2
+            className={`text-xl sm:text-2xl font-bold text-amber-950 mb-4 ${LoubagMedium.className}`}
+          >
+            About {destination.name}
+          </h2>
+          <p
+            className={`text-gray-800 leading-relaxed text-base sm:text-lg whitespace-pre-line ${AgrandirRegular.className}`}
+          >
+            {destination.description.trim()}
+          </p>
+
+          <div className="mt-8 pt-6 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="text-sm font-bold text-gray-900">Interested in visiting {destination.name}?</p>
+              <p className="text-xs text-gray-700">Include {destination.name} in your custom safari itinerary or choose a pre-designed package.</p>
             </div>
-            <main className="max-w-5xl mx-auto mt-6 px-4 py-12">
-                <h1 className={`text-2xl md:text-5xl font-bold mb-4 ${LoubagMedium.className}`}>{destination.name}</h1>
-                <p className={`text-2xl text-gray-600 mb-8 ${AgrandirRegular.className}`}>{destination.shortDescription}</p>
-
-                {/* Images */}
-                <DestinationImages images={destination.images} name={destination.name} />
-
-
-                {/* Description */}
-                <p className={`text-gray-700 leading-relaxed whitespace-pre-line mb-10 md:text-xl ${AgrandirRegular.className}`}>
-                    {destination.description}
-                </p>
-
-                {/* Map */}
-                <iframe
-                    width="100%"
-                    height="400"
-                    loading="lazy"
-                    allowFullScreen
-                    className="rounded-lg"
-                    src={`https://www.google.com/maps?q=${destination.location.lat},${destination.location.lng}&hl=en&z=10&output=embed`}
-                ></iframe>
-            </main>
-            <div className="p-4 md:p-16 md:pb-0">
-                <TripPackages />
+            <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto shrink-0">
+              <Button
+                href={`/book?intent=destination&destination=${destination.slug}`}
+                ariaLabel={`Plan custom safari to ${destination.name}`}
+                size="md"
+              >
+                Plan Safari to {destination.name} &rarr;
+              </Button>
+              <a
+                href={`https://wa.me/255658883554?text=${encodeURIComponent(`Hi Ndito Travel! I want to visit ${destination.name}.`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-amber-900 font-semibold underline hover:text-black"
+              >
+                Or chat on WhatsApp
+              </a>
             </div>
-        </>
-    );
+          </div>
+        </div>
+
+        {/* Interactive Location Map */}
+        <section className="my-10">
+          <h2
+            className={`text-xl sm:text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2 ${LoubagMedium.className}`}
+          >
+            <MapPin size={22} className="text-amber-900" />
+            Location & Map
+          </h2>
+          <div className="rounded-2xl overflow-hidden shadow-md border border-black/5 bg-[#f6f2ee] h-[350px] sm:h-[400px]">
+            <iframe
+              title={`Google Map location of ${destination.name}`}
+              width="100%"
+              height="100%"
+              loading="lazy"
+              allowFullScreen
+              className="w-full h-full border-0"
+              src={`https://www.google.com/maps?q=${destination.location.lat},${destination.location.lng}&hl=en&z=10&output=embed`}
+            />
+          </div>
+        </section>
+
+        {/* Suggested Trips */}
+        <section className="mt-16">
+          <h2
+            className={`text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-2 ${LoubagMedium.className}`}
+          >
+            Recommended Safari Packages
+          </h2>
+          <TripPackages />
+        </section>
+      </article>
+    </>
+  );
 }
