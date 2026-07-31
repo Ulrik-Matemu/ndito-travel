@@ -21,21 +21,25 @@ const HERO_IMAGES = [
     alt: "Ndito Travel safari fleet at sunset",
   },
   {
-    src: "/photos/zanzibar-beach-nditotravel-zanzibar.webp",
-    alt: "Pristine Zanzibar tropical beach",
-  },
-  {
-    src: "/photos/kilimanjaro-hero-nditotravel.webp",
+    src: "/photos/hero-images/kilimanjaro-photo-by-ndito-travel.jpg",
     alt: "Majestic Mount Kilimanjaro view",
   },
   {
-    src: "/photos/serengeti-the-great-migration.webp",
+    src: "/photos/hero-images/lioness-in-serengeti-photo-by-ndito-travel.jpg",
     alt: "Wildlife migration in Serengeti",
   },
   {
-    src: "/photos/Arusha_National_Park_Mount_Meru_Girrafe_11.webp",
-    alt: "Wildlife near Mount Meru",
+    src: "/photos/hero-images/giraffe-photo-by-ndito-travel.jpg",
+    alt: "Giraffe in Serengeti"
   },
+  {
+    src: "/photos/hero-images/wildebeest-herd-great-migration-photo-by-ndito-travel.jpg",
+    alt: "Wildebeest in Great Migration in Serengeti"
+  },
+  {
+    src: "/photos/hero-images/elegant-beach-in-zanzibar-photo-by-ndito-travel.jpg",
+    alt: "Elegant Beach in Zanzibar"
+  }
 ];
 
 export const Hero = () => {
