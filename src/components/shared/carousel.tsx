@@ -122,7 +122,7 @@ export default function SafariCarousel() {
                 Tell us your dream adventure and we will craft a personalized itinerary for you.
               </p>
               <a
-                href="https://wa.me/255658883554"
+                href="https://wa.me/255744903927"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-amber-900 hover:bg-black text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-full transition-colors shadow-md focus-visible:ring-2 focus-visible:ring-amber-800 focus-visible:outline-none"

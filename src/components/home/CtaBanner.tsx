@@ -50,7 +50,7 @@ export function CtaBanner() {
                 BOOK YOUR SAFARI &rarr;
               </Button>
               <Button
-                href="https://wa.me/255658883554"
+                href="https://wa.me/255744903927"
                 external
                 ariaLabel="Chat on WhatsApp with Ndito Travel"
                 variant="tertiary"
