@@ -188,7 +188,7 @@ The Northern Circuit is the longest and newest trail on Kilimanjaro. It circles 
     updatedAt: "2026-07-20",
     heroImage: "/photos/ndito-travel-cars.webp",
     author: {
-      name: "Ahmed Magram",
+      name: "Ulrik Matemu",
       role: "Safari Director & Founder",
       avatar: "/photos/review-2.webp",
     },
@@ -256,7 +256,7 @@ On average, expect to spend:
     updatedAt: "2026-07-22",
     heroImage: "/photos/serengeti-the-great-migration.webp",
     author: {
-      name: "Ahmed Magram",
+      name: "Ulrik Matemu",
       role: "Safari Director & Founder",
       avatar: "/photos/review-2.webp",
     },
