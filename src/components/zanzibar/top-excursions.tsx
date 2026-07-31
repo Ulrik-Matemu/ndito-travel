@@ -26,7 +26,7 @@ export const zanzibarExcursions = [
     title: "Organic Spice Farm Tour",
     category: "Sensory & Cultural",
     duration: "3 Hours",
-    image: "/photos/historic-building-zanzibar.jpg",
+    image: "/photos/new-images/spice-farm.jpg",
     description:
       "Taste, smell, and touch fresh cloves, nutmeg, cinnamon bark, vanilla pods, and lemongrass directly from rural organic plantations that earned Zanzibar its moniker 'The Spice Island'.",
   },
@@ -42,7 +42,7 @@ export const zanzibarExcursions = [
     title: "Jozani Chwaka Bay National Park",
     category: "Wildlife Sanctuary",
     duration: "3 Hours",
-    image: "/photos/prestine-island-in-zanzibar.jpg",
+    image: "/photos/new-images/jozani.jpg",
     description:
       "Explore Zanzibar's sole national park, home to the rare and endemic Kirk's Red Colobus monkey found nowhere else on earth, alongside elevated boardwalks through mangrove forests.",
   },

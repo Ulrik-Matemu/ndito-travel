@@ -1,6 +1,7 @@
 "use client";
 
 import { BookingFormData, TripCategory, ComfortLevel } from "@/lib/bookingSchema";
+import { trackCustomItineraryChange } from "@/lib/analytics";
 import {
   Compass,
   Mountain,
@@ -123,11 +124,16 @@ export function CustomItineraryBuilder({
   const { customItinerary } = formData;
 
   const setCustomItinerary = (updates: Partial<typeof customItinerary>) => {
+    const updatedState = { ...customItinerary, ...updates };
     onChange({
-      customItinerary: {
-        ...customItinerary,
-        ...updates,
-      },
+      customItinerary: updatedState,
+    });
+    trackCustomItineraryChange({
+      category: updatedState.tripCategory,
+      destinationsCount: updatedState.destinations.length,
+      destinations: updatedState.destinations,
+      budgetLevel: updatedState.comfortLevel,
+      addonsCount: updatedState.specialActivities.length,
     });
   };
 

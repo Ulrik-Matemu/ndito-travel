@@ -4,6 +4,10 @@ import Footer from "@/components/shared/footer";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from '@vercel/analytics/next';
 import { PostHogProvider } from './providers'
+import { PostHogPageView } from '@/components/analytics/PostHogPageView'
+import { CookieConsent } from '@/components/analytics/CookieConsent'
+import { NavigationLoader } from '@/components/shared/NavigationLoader'
+import ChatWidget from "@/components/shared/chatWidget";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nditotravel.co.tz"),
@@ -88,17 +92,24 @@ export default function RootLayout({
         {/* Main content fills remaining height */}
         <main id="main-content" className="flex-grow">
           <PostHogProvider>
-          {children}
+            <NavigationLoader />
+            <PostHogPageView />
+            {children}
           </PostHogProvider>
         </main>
 
+        {/* Cookie Consent Banner */}
+        <CookieConsent />
+
         {/* Footer stays pinned at bottom */}
-        <div className="mx-4 md:mx-0">
+        <div className="mx-0 md:mx-0">
           <Footer />
         </div>
+        <ChatWidget />
         <SpeedInsights />
         <Analytics />
       </body>
     </html>
   );
 }
+

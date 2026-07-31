@@ -94,7 +94,7 @@ export const Hero = () => {
         </h1>
 
         {/* Review Badges Pill */}
-        <div className="flex items-center gap-4 bg-black/50 backdrop-blur-md px-4 h-10 md:mt-3 rounded-2xl border border-white/20 w-max shadow-lg">
+        <div className="flex items-center gap-4 bg-black/50 backdrop-blur-md px-4 h-10 mt-12 md:mt-3 rounded-2xl border border-white/20 w-max shadow-lg">
           <div className="flex items-center gap-2">
             <a
               href="https://share.google/OtFBIRdxriIEmnjDI"

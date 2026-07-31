@@ -50,7 +50,7 @@ export function Testimonials() {
             <div className="flex items-center gap-3 pt-6 border-t border-black/10 mt-6">
               <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 border border-amber-800">
                 <Image
-                  src="/photos/review-1.webp"
+                  src="/photos/user-placeholder.png"
                   alt="Sarah & David Jenkins"
                   fill
                   sizes="40px"
@@ -111,7 +111,7 @@ export function Testimonials() {
             <div className="flex items-center gap-3 pt-6 border-t border-white/10 mt-6">
               <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0 border border-amber-400">
                 <Image
-                  src="/photos/review-2.webp"
+                  src="/photos/user-placeholder.png"
                   alt="Marcus Vance"
                   fill
                   sizes="40px"

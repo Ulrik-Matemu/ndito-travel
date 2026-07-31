@@ -39,7 +39,7 @@ export const urbanHubs = [
   {
     name: "Stone Town (Zanzibar City)",
     role: "UNESCO Historic Island Port",
-    image: "/photos/historic-building-zanzibar.jpg",
+    image: "/photos/new-images/stone-town.avif",
     description:
       "A 19th-century maritime trade hub constructed from coral stone. Famous for brass-studded wooden doors, House of Wonders, and evening seafood gardens.",
     highlights: ["Forodhani Night Market", "House of Wonders", "Sultan's Palace Museum"],

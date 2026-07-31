@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { Instagram, Facebook, Phone, Mail, CheckCircle2 } from "lucide-react";
+import { trackContactClick } from "@/lib/analytics";
+import { openCookiePreferences } from "@/components/analytics/CookieConsent";
 
 const LoubagMedium = localFont({
   src: "../../../public/fonts/Loubag-Medium.ttf",
@@ -135,29 +137,29 @@ export default function Footer() {
               </h4>
               <ul className={`space-y-2.5 text-sm text-gray-300 ${AgrandirRegular.className}`}>
                 <li>
-                  <span className="hover:text-amber-400 transition-colors cursor-default">
+                  <Link href="/experiences/big-five-game-drives" className="hover:text-amber-400 transition-colors">
                     Big Five Game Drives
-                  </span>
+                  </Link>
                 </li>
                 <li>
-                  <span className="hover:text-amber-400 transition-colors cursor-default">
+                  <Link href="/experiences/hot-air-balloon-safaris" className="hover:text-amber-400 transition-colors">
                     Hot Air Balloon Safaris
-                  </span>
+                  </Link>
                 </li>
                 <li>
-                  <span className="hover:text-amber-400 transition-colors cursor-default">
+                  <Link href="/experiences/maasai-cultural-tours" className="hover:text-amber-400 transition-colors">
                     Maasai Cultural Tours
-                  </span>
+                  </Link>
                 </li>
                 <li>
-                  <span className="hover:text-amber-400 transition-colors cursor-default">
+                  <Link href="/experiences/chimpanzee-trekking" className="hover:text-amber-400 transition-colors">
                     Chimpanzee Trekking
-                  </span>
+                  </Link>
                 </li>
                 <li>
-                  <span className="hover:text-amber-400 transition-colors cursor-default">
+                  <Link href="/experiences/zanzibar-spice-tours" className="hover:text-amber-400 transition-colors">
                     Zanzibar Spice Tours
-                  </span>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -227,6 +229,7 @@ export default function Footer() {
                   href="https://wa.me/255658883554"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackContactClick("whatsapp", "footer")}
                   aria-label="Chat on WhatsApp with Ndito Travel"
                   className="w-10 h-10 rounded-full bg-white text-gray-900 flex items-center justify-center hover:bg-amber-400 hover:scale-110 transition-all shadow-md"
                 >
@@ -234,6 +237,7 @@ export default function Footer() {
                 </a>
                 <a
                   href="mailto:office@nditotravel.co.tz"
+                  onClick={() => trackContactClick("email", "footer")}
                   aria-label="Email Ndito Travel"
                   className="w-10 h-10 rounded-full bg-white text-gray-900 flex items-center justify-center hover:bg-amber-400 hover:scale-110 transition-all shadow-md"
                 >
@@ -307,6 +311,13 @@ export default function Footer() {
               <Link href="/terms" className="hover:text-white transition-colors">
                 Terms of Service
               </Link>
+              <button
+                type="button"
+                onClick={openCookiePreferences}
+                className="hover:text-white transition-colors underline cursor-pointer"
+              >
+                Cookie Preferences
+              </button>
               <Link href="/book" className="hover:text-white transition-colors">
                 Booking Terms
               </Link>

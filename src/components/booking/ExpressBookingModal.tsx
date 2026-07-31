@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Send, CheckCircle2, Loader2, ShieldCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitBooking } from "@/lib/booking";
 import { initialFormData } from "@/lib/bookingSchema";
+import { trackEvent } from "@/lib/analytics";
 import localFont from "next/font/local";
 
 const LoubagMedium = localFont({
@@ -36,6 +37,15 @@ export function ExpressBookingModal({
   const [submittedRef, setSubmittedRef] = useState<string | null>(null);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (isOpen) {
+      trackEvent("express_modal_opened", {
+        package_slug: defaultPackageSlug,
+        context_subject: contextSubject,
+      });
+    }
+  }, [isOpen, defaultPackageSlug, contextSubject]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName || !email || !phone) {
@@ -63,6 +73,11 @@ export function ExpressBookingModal({
       const result = await submitBooking(payload);
       if (result.success) {
         setSubmittedRef(result.bookingId);
+        trackEvent("express_modal_submitted", {
+          package_slug: defaultPackageSlug,
+          context_subject: contextSubject,
+          group_size: groupSize,
+        });
       }
     } catch (err) {
       console.error(err);

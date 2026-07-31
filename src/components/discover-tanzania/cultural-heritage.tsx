@@ -42,7 +42,7 @@ export const culturalGroups = [
   {
     name: "Swahili Maritime & Spice Culture",
     subtitle: "A 1,000-Year Synthesis of Africa, Arabia & Persia",
-    image: "/photos/historic-building-zanzibar.jpg",
+    image: "/photos/new-images/marinetime.jpeg",
     location: "Zanzibar, Bagamoyo & Coastal Ports",
     description:
       "Forged along ancient Indian Ocean monsoon trade routes, Swahili culture is reflected in ornate carved wooden doors, taarab music, aromatic coconut curry cuisine, and traditional wooden dhow sailboats.",

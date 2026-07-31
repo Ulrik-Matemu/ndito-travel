@@ -12,6 +12,7 @@ import {
   TripCategory,
 } from "@/lib/bookingSchema";
 import { submitBooking } from "@/lib/booking";
+import { trackBookingStep, trackEvent } from "@/lib/analytics";
 import { StepIndicator } from "./StepIndicator";
 import { Step1TripDetails } from "./Step1TripDetails";
 import { Step2YourInfo } from "./Step2YourInfo";
@@ -98,6 +99,11 @@ function WizardContent() {
       return;
     }
     setErrors({});
+    trackBookingStep(2, formData.bookingMode, {
+      intent: formData.intent,
+      package_slug: formData.packageSlug,
+      group_size: formData.groupSize,
+    });
     setStep(2);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -109,6 +115,7 @@ function WizardContent() {
       return;
     }
     setErrors({});
+    trackBookingStep(3, formData.bookingMode);
     setStep(3);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -119,6 +126,17 @@ function WizardContent() {
       const result = await submitBooking(formData);
       if (result.success) {
         setBookingId(result.bookingId);
+        trackBookingStep(4, formData.bookingMode, {
+          intent: formData.intent,
+          group_size: formData.groupSize,
+          trip_category: formData.customItinerary.tripCategory,
+        });
+        trackEvent("booking_submitted", {
+          booking_mode: formData.bookingMode,
+          intent: formData.intent,
+          package_slug: formData.packageSlug,
+          group_size: formData.groupSize,
+        });
         setStep(4);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }

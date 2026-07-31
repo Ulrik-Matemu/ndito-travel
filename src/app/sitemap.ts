@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { safariDestinations } from "@/data/destinations";
 import { safariPackages } from "@/data/safariTrips";
 import { articles } from "@/data/articles";
+import { experiencesData } from "@/data/experiences";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://nditotravel.co.tz";
@@ -10,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
     { url: `${baseUrl}/safaris`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/experiences`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/kilimanjaro`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/zanzibar`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/discover-tanzania`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
@@ -25,6 +27,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Dynamic destination pages
   const destinationRoutes: MetadataRoute.Sitemap = safariDestinations.map((dest) => ({
     url: `${baseUrl}/destinations/${dest.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  // Dynamic experience pages
+  const experienceRoutes: MetadataRoute.Sitemap = Object.keys(experiencesData).map((slug) => ({
+    url: `${baseUrl}/experiences/${slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.8,
@@ -46,5 +56,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...destinationRoutes, ...itineraryRoutes, ...articleRoutes];
+  return [...staticRoutes, ...destinationRoutes, ...experienceRoutes, ...itineraryRoutes, ...articleRoutes];
 }

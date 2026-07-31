@@ -50,7 +50,7 @@ export const zanzibarRegions = [
     id: "southwest",
     name: "South-West (Stone Town & Fumba)",
     tagline: "UNESCO Heritage & Legendary Spice Markets",
-    image: "/photos/historic-building-zanzibar.jpg",
+    image: "/photos/new-images/fumba.jpeg",
     vibe: "Historic, Swahili Culture, Culinary",
     bestFor: "Culture enthusiasts, foodies, history buffs, and island hopping boat departures.",
     highlights: [
@@ -65,7 +65,7 @@ export const zanzibarRegions = [
     id: "northeast",
     name: "Northeast Coast (Matemwe & Mnemba)",
     tagline: "Private Luxury & World-Class Coral Reef Diving",
-    image: "/photos/prestine-island-in-zanzibar.jpg",
+    image: "/photos/new-images/Mnemba-island.webp",
     vibe: "Secluded, Exclusive, Eco-Luxury",
     bestFor: "Scuba divers, marine enthusiasts, high-end privacy seekers.",
     highlights: [

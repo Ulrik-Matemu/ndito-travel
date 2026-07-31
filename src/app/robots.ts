@@ -1,6 +1,8 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = "https://nditotravel.co.tz";
+
   return {
     rules: [
       {
@@ -8,7 +10,20 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/api/", "/_next/", "/admin/"],
       },
+      {
+        userAgent: [
+          "GPTBot",
+          "ChatGPT-User",
+          "ClaudeBot",
+          "Claude-Web",
+          "PerplexityBot",
+          "Google-Extended",
+          "Applebot-Extended",
+        ],
+        allow: "/",
+      },
     ],
-    sitemap: "https://nditotravel.co.tz/sitemap.xml",
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
+
