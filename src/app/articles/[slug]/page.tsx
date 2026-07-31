@@ -279,7 +279,7 @@ export default async function ArticleDetailPage({
                   BOOK SAFARI ONLINE &rarr;
                 </Button>
                 <Button
-                  href="https://wa.me/255744903927"
+                  href="https://wa.me/255658883554"
                   external
                   variant="tertiary"
                   ariaLabel="Chat on WhatsApp"

@@ -66,7 +66,7 @@ export default function AboutPage() {
             "@type": "TravelAgency",
             name: "Ndito Travel",
             url: "https://nditotravel.co.tz",
-            telephone: "+255744903927",
+            telephone: "+255658883554",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Arusha",
@@ -198,7 +198,7 @@ export default function AboutPage() {
               START PLANNING ONLINE &rarr;
             </Button>
             <Button
-              href="https://wa.me/255744903927"
+              href="https://wa.me/255658883554"
               external
               ariaLabel="Chat on WhatsApp"
               variant="tertiary"

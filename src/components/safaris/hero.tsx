@@ -54,7 +54,7 @@ export default function SafariHero({
             {subheading}
           </p>
           <Button
-            href="https://wa.me/255744903927"
+            href="https://wa.me/255658883554"
             external
             ariaLabel="Chat on WhatsApp to plan trip"
             variant="secondary"

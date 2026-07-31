@@ -38,7 +38,7 @@ export function BookingSuccess({ bookingId, formData }: BookingSuccessProps) {
     return encodeURIComponent(msg);
   };
 
-  const whatsappUrl = `https://wa.me/255744903927?text=${getWhatsAppMessage()}`;
+  const whatsappUrl = `https://wa.me/255658883554?text=${getWhatsAppMessage()}`;
 
   return (
     <div className="bg-[#f6f2ee] p-8 sm:p-12 rounded-2xl border border-black/5 shadow-xl text-center max-w-xl mx-auto space-y-6">

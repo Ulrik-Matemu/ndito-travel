@@ -181,7 +181,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <a href="tel:+255744903927" className="hover:text-amber-400 transition-colors">
+                  <a href="tel:+255658883554" className="hover:text-amber-400 transition-colors">
                     +255 658 883 554
                   </a>
                 </li>
@@ -226,7 +226,7 @@ export default function Footer() {
                   <Instagram size={18} />
                 </a>
                 <a
-                  href="https://wa.me/255744903927"
+                  href="https://wa.me/255658883554"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackContactClick("whatsapp", "footer")}

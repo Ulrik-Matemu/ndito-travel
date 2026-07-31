@@ -258,7 +258,7 @@ export default async function SafariPage({
               BOOK THIS SAFARI &rarr;
             </Button>
             <a
-              href={`https://wa.me/255744903927?text=${encodeURIComponent(`Hi Ndito Travel! I am interested in booking the "${safari.title}" (${safari.duration}).`)}`}
+              href={`https://wa.me/255658883554?text=${encodeURIComponent(`Hi Ndito Travel! I am interested in booking the "${safari.title}" (${safari.duration}).`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-amber-200 hover:text-white underline font-semibold py-2 px-3 focus-visible:outline-none"

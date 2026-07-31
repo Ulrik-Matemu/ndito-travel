@@ -184,7 +184,7 @@ export default function FAQPage() {
             </p>
           </div>
           <a
-            href="https://wa.me/255744903927"
+            href="https://wa.me/255658883554"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-black font-extrabold px-6 py-3 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md shrink-0"

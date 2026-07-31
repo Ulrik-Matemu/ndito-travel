@@ -187,7 +187,7 @@ export default async function DestinationPage({
                 Plan Safari to {destination.name} &rarr;
               </Button>
               <a
-                href={`https://wa.me/255744903927?text=${encodeURIComponent(`Hi Ndito Travel! I want to visit ${destination.name}.`)}`}
+                href={`https://wa.me/255658883554?text=${encodeURIComponent(`Hi Ndito Travel! I want to visit ${destination.name}.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs text-amber-900 font-semibold underline hover:text-black"

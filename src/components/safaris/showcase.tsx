@@ -29,7 +29,7 @@ export const ShowCase = () => {
             Witness majestic elephant herds in Tarangire, spot rare wildlife in Ngorongoro, and capture memories that last a lifetime on your custom safari adventure.
           </p>
           <Button
-            href="https://wa.me/255744903927"
+            href="https://wa.me/255658883554"
             external
             ariaLabel="Book a safari experience on WhatsApp"
             size="md"

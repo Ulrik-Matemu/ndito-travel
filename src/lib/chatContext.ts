@@ -54,7 +54,7 @@ RULES:
   * To view a destination: [{Destination Name}](/destinations/{slug})
   * To view Kilimanjaro treks: [Kilimanjaro Treks](/kilimanjaro)
   * To view Zanzibar getaways: [Zanzibar Holidays](/zanzibar)
-  * To chat directly on WhatsApp: [Chat on WhatsApp](https://wa.me/255744903927)
+  * To chat directly on WhatsApp: [Chat on WhatsApp](https://wa.me/255658883554)
 - Respond at a greeting from the client if they do greet, if not then just go ahead with providing relevant response.
 - Never invent information or routes not present below.
 

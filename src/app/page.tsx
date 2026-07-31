@@ -24,7 +24,7 @@ export default function Home() {
               logo: "https://nditotravel.co.tz/photos/ndito-travel-cars.webp",
               description:
                 "Licensed Tanzanian tour operator specializing in wildlife safaris, Kilimanjaro climbs, and Zanzibar holidays.",
-              telephone: "+255744903927",
+              telephone: "+255658883554",
               email: "office@nditotravel.co.tz",
               address: {
                 "@type": "PostalAddress",
