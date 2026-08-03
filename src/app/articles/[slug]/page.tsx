@@ -275,7 +275,7 @@ export default async function ArticleDetailPage({
                 Have questions about safari pricing, Kilimanjaro dates, or airport transfers? Talk directly with our team in Arusha.
               </p>
               <div className="space-y-3 pt-2">
-                <Button href="/book" ariaLabel="Book custom safari" size="md" className="w-full text-center">
+                <Button href="/book?source=articles" ariaLabel="Book custom safari" size="md" className="w-full text-center">
                   BOOK SAFARI ONLINE &rarr;
                 </Button>
                 <Button

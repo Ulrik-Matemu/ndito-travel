@@ -64,9 +64,17 @@ const DESTINATIONS = [
   { id: "Ngorongoro Crater", label: "Ngorongoro Crater" },
   { id: "Tarangire National Park", label: "Tarangire (Elephants & Baobabs)" },
   { id: "Lake Manyara", label: "Lake Manyara (Tree Lions)" },
-  { id: "Zanzibar Beaches", label: "Zanzibar Beaches (Nungwi / Paje)" },
+  { id: "Arusha National Park", label: "Arusha National Park" },
+  { id: "Zanzibar Beaches", label: "Zanzibar Beaches (Nungwi / Paje / Stone Town)" },
+  { id: "Pemba Island", label: "Pemba Island" },
+  { id: "Mafia Island", label: "Mafia Island" },
   { id: "Nyerere (Selous)", label: "Nyerere / Selous (Southern Circuit)" },
   { id: "Ruaha National Park", label: "Ruaha Wilderness" },
+  { id: "Mikumi National Park", label: "Mikumi National Park" },
+  { id: "Mahale Mountains", label: "Mahale Mountains (Chimpanzees)" },
+  { id: "Gombe Stream", label: "Gombe Stream (Jane Goodall)" },
+  { id: "Lake Natron", label: "Lake Natron (Flamingos & Ol Doinyo)" },
+  { id: "Lake Eyasi", label: "Lake Eyasi (Hadzabe Tribe)" },
 ];
 
 const KILIMANJARO_ROUTES = [
@@ -74,6 +82,8 @@ const KILIMANJARO_ROUTES = [
   "Lemosho Route (8 Days - Scenic & Acclimatization)",
   "Marangu Route (6 Days - Hut Accommodation)",
   "Rongai Route (7 Days - Remote North Trail)",
+  "Northern Circuit Route (9 Days - Most Remote & Scenic)",
+  "Umbwe Route (6 Days - Steep & Challenging)",
 ];
 
 const DURATIONS = [
@@ -114,6 +124,11 @@ const ADDONS = [
   "Walking Safari with Armed Ranger",
   "Zanzibar Spice Tour & Stone Town Walk",
   "Mnemba Island Snorkeling Trip",
+  "Big Five Photography Safari",
+  "Chimpanzee Trekking (Mahale/Gombe)",
+  "Coffee Farm Tour (Arusha)",
+  "Sunset Dhow Cruise (Zanzibar)",
+  "Deep Sea Fishing (Zanzibar)",
 ];
 
 export function CustomItineraryBuilder({

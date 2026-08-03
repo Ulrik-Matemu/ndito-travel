@@ -310,7 +310,7 @@ export const Navbar = () => {
         {/* Right Action: Desktop BOOK NOW CTA */}
         <div className="hidden md:flex items-center">
           <Link
-            href="/book"
+            href="/book?source=navbar"
             className={`text-xs lg:text-sm font-bold px-4 lg:px-5 py-2 lg:py-2.5 rounded-xl transition-all shadow-xs hover:shadow-md focus-visible:ring-2 focus-visible:ring-amber-800 focus-visible:outline-none ${
               isTransparent
                 ? "bg-amber-500 hover:bg-amber-400 text-black shadow-md"
@@ -393,7 +393,7 @@ export const Navbar = () => {
 
                 <div className="px-6 pb-6 space-y-4">
                   <Link
-                    href="/book"
+                    href="/book?source=navbar"
                     onClick={() => setIsOpen(false)}
                     className="flex items-center justify-center gap-2 w-full bg-amber-900 hover:bg-amber-950 text-white font-bold py-3 rounded-xl transition-all shadow-md"
                   >

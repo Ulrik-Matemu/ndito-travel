@@ -95,7 +95,7 @@ export const ZanzibarExcursionsAndWeather = () => {
 
                 <div className="p-5 pt-0">
                   <Link
-                    href="/book"
+                    href="/book?intent=zanzibar&source=zanzibar-excursions"
                     className="w-full bg-[#e8dfd7] hover:bg-amber-900 hover:text-white text-gray-900 font-bold py-2.5 px-4 rounded-xl text-xs transition-colors flex items-center justify-center gap-1"
                   >
                     Add to Itinerary

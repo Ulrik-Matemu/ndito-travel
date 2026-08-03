@@ -11,6 +11,8 @@ import {
   BookingIntent,
   TripCategory,
 } from "@/lib/bookingSchema";
+import { safariPackages } from "@/data/safariTrips";
+import { getExperienceMapping, resolveDestinationName } from "@/lib/bookingHelpers";
 import { submitBooking } from "@/lib/booking";
 import { trackBookingStep, trackEvent } from "@/lib/analytics";
 import { StepIndicator } from "./StepIndicator";
@@ -35,42 +37,83 @@ function WizardContent() {
     const intentParam = searchParams.get("intent") as BookingIntent | null;
     const routeParam = searchParams.get("route");
     const destinationParam = searchParams.get("destination");
+    const experienceParam = searchParams.get("experience");
+    const sourceParam = searchParams.get("source");
 
     setFormData((prev) => {
       const updated = { ...prev };
 
+      if (sourceParam) {
+        updated.referrerPage = sourceParam;
+      }
+
+      // 1. Direct package selection
       if (pkg) {
         updated.bookingMode = "package";
         updated.packageSlug = pkg;
         updated.intent = "safari_package";
-      } else if (intentParam) {
+        const matched = safariPackages.find((s) => s.slug === pkg);
+        if (matched) {
+          updated.packageTitle = matched.title;
+        }
+      }
+      // 2. Experience selection from experience pages
+      else if (experienceParam) {
+        updated.intent = "experience";
+        updated.bookingMode = "custom";
+        updated.experienceSlug = experienceParam;
+        const expMapping = getExperienceMapping(experienceParam);
+        if (expMapping) {
+          updated.experienceTitle = expMapping.title;
+          updated.customItinerary = {
+            ...updated.customItinerary,
+            tripCategory: expMapping.tripCategory,
+            destinations: expMapping.destinations.length > 0 ? expMapping.destinations : updated.customItinerary.destinations,
+            specialActivities: expMapping.activities.length > 0 ? expMapping.activities : updated.customItinerary.specialActivities,
+          };
+        }
+      }
+      // 3. Explicit Intent Routing (kilimanjaro, zanzibar, destination, custom)
+      else if (intentParam) {
         updated.intent = intentParam;
         if (intentParam === "kilimanjaro") {
           updated.bookingMode = "custom";
           updated.customItinerary = {
             ...updated.customItinerary,
             tripCategory: "kilimanjaro" as TripCategory,
-            kilimanjaroRoute: routeParam || "Machame Route (7 Days - High Summit Success)",
+            kilimanjaroRoute: routeParam
+              ? decodeURIComponent(routeParam)
+              : "Machame Route (7 Days - High Summit Success)",
           };
         } else if (intentParam === "zanzibar") {
           updated.bookingMode = "custom";
           updated.customItinerary = {
             ...updated.customItinerary,
             tripCategory: "zanzibar" as TripCategory,
-            destinations: ["Zanzibar Beaches"],
+            destinations: destinationParam
+              ? [decodeURIComponent(destinationParam)]
+              : ["Zanzibar Beaches"],
           };
+        } else if (intentParam === "destination") {
+          updated.bookingMode = "custom";
+          if (destinationParam) {
+            const destName = resolveDestinationName(destinationParam);
+            updated.customItinerary = {
+              ...updated.customItinerary,
+              destinations: [destName],
+            };
+          }
         }
       }
-
-      if (destinationParam) {
+      // 4. Destination parameter fallback
+      else if (destinationParam) {
         updated.bookingMode = "custom";
-        const formattedDest = destinationParam
-          .replace(/-/g, " ")
-          .replace(/\b\w/g, (l) => l.toUpperCase());
-        if (!updated.customItinerary.destinations.includes(formattedDest)) {
+        updated.intent = "destination";
+        const destName = resolveDestinationName(destinationParam);
+        if (!updated.customItinerary.destinations.includes(destName)) {
           updated.customItinerary = {
             ...updated.customItinerary,
-            destinations: [...updated.customItinerary.destinations, formattedDest],
+            destinations: [...updated.customItinerary.destinations, destName],
           };
         }
       }

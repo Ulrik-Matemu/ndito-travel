@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { motion, AnimatePresence } from "framer-motion";
+import { ExpressBookingModal } from "@/components/booking/ExpressBookingModal";
 import {
   Clock,
   MapPin,
@@ -79,6 +80,7 @@ export default function ExperienceDetailClient({ experience }: ExperienceDetailC
   const [activeTab, setActiveTab] = useState<string>("overview");
   const [selectedMonthIndex, setSelectedMonthIndex] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [isExpressModalOpen, setIsExpressModalOpen] = useState(false);
 
   const selectedMonth = experience.seasonality[selectedMonthIndex];
 
@@ -553,7 +555,7 @@ export default function ExperienceDetailClient({ experience }: ExperienceDetailC
             <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
               Our native Arusha travel specialists will design a custom itinerary around your schedule, preferences, and budget.
             </p>
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Button
                 href={`/book?experience=${experience.slug}`}
                 ariaLabel={`Book ${experience.title}`}
@@ -563,6 +565,13 @@ export default function ExperienceDetailClient({ experience }: ExperienceDetailC
               >
                 BOOK THIS EXPERIENCE
               </Button>
+              <button
+                type="button"
+                onClick={() => setIsExpressModalOpen(true)}
+                className="w-full sm:w-auto bg-amber-500 hover:bg-amber-400 text-black font-bold py-3.5 px-6 rounded-xl transition-all shadow-md text-sm"
+              >
+                ⚡ QUICK 60-SEC INQUIRY
+              </button>
               <Button
                 href="https://wa.me/255658883554"
                 external
@@ -582,6 +591,12 @@ export default function ExperienceDetailClient({ experience }: ExperienceDetailC
 
       </main>
 
+      <ExpressBookingModal
+        isOpen={isExpressModalOpen}
+        onClose={() => setIsExpressModalOpen(false)}
+        title={`Inquire About ${experience.title}`}
+        contextSubject={experience.title}
+      />
     </div>
   );
 }

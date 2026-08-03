@@ -16,9 +16,10 @@ export default function ChatWidget() {
     {
       role: "model",
       content:
-        "Jambo! I'm the Ndito Travel assistant. Ask me about our [safaris](/safaris), [Kilimanjaro treks](/kilimanjaro), or [booking a trip](/book).",
+        "Jambo! 🌍 I'm the Ndito Travel virtual assistant. Ask me about our [safaris](/safaris), [Kilimanjaro treks](/kilimanjaro), wildlife, or let me help you [book a custom trip](/book).",
     },
   ]);
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -112,6 +113,7 @@ export default function ChatWidget() {
         body: JSON.stringify({
           message: text,
           history: nextMessages.slice(0, -1),
+          sessionId,
         }),
       });
 
@@ -128,6 +130,9 @@ export default function ChatWidget() {
       }
 
       const data = await res.json();
+      if (data.sessionId) {
+        setSessionId(data.sessionId);
+      }
       setMessages((m) => [...m, { role: "model", content: data.reply ?? "Sorry, something went wrong." }]);
     } catch {
       setMessages((m) => [

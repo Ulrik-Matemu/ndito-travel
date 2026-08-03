@@ -178,7 +178,7 @@ export const SafariHospitality = () => {
                   Style: {activeTier.badge}
                 </span>
                 <Link
-                  href="/book"
+                  href="/book?intent=custom&source=safari-hospitality"
                   className="w-full sm:w-auto bg-amber-900 hover:bg-amber-950 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 text-sm shrink-0"
                 >
                   Book {activeTier.name.split(" ")[0]} Package

@@ -41,7 +41,7 @@ export function CtaBanner() {
 
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <Button
-                href="/book"
+                href="/book?source=homepage"
                 ariaLabel="Book your safari online"
                 variant="secondary"
                 size="md"

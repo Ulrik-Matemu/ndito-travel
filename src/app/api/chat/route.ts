@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildSystemContext } from "@/lib/chatContext";
+import { saveChatConversationToFirestore } from "@/lib/firebase/firestore";
 
 // ---------------------------------------------------------------------------
 // Ndito Travel — AI chat widget backend
@@ -34,9 +35,10 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { message, history } = body as {
+    const { message, history, sessionId } = body as {
       message: string;
       history?: ChatMessage[];
+      sessionId?: string;
     };
 
     if (!message || typeof message !== "string") {
@@ -50,6 +52,9 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+
+    const activeSessionId =
+      sessionId || `chat_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
 
     const contents = [
       ...(history || []).slice(-10).map((m) => ({
@@ -68,8 +73,8 @@ export async function POST(req: NextRequest) {
           parts: [{ text: SYSTEM_CONTEXT }],
         },
         generationConfig: {
-          temperature: 0.4,
-          maxOutputTokens: 300,
+          temperature: 0.5,
+          maxOutputTokens: 500,
         },
       }),
     });
@@ -96,7 +101,18 @@ export async function POST(req: NextRequest) {
       data?.candidates?.[0]?.content?.parts?.[0]?.text ??
       "Sorry, I couldn't come up with a response — please try rephrasing, or reach us directly.";
 
-    return NextResponse.json({ reply });
+    // Asynchronously log full conversation thread to Firebase Firestore ('chat_conversations')
+    const fullHistoryForLog = [
+      ...(history || []),
+      { role: "user" as const, content: message },
+      { role: "model" as const, content: reply },
+    ];
+
+    saveChatConversationToFirestore(activeSessionId, message, reply, fullHistoryForLog).catch((err) =>
+      console.error("Failed to log chat conversation to Firestore:", err)
+    );
+
+    return NextResponse.json({ reply, sessionId: activeSessionId });
   } catch (err) {
     console.error("Chat route error:", err);
     return NextResponse.json(

@@ -2,8 +2,8 @@ import { safariDestinations } from "@/data/destinations";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { DestinationImages } from "@/components/shared/destinationImages";
+import { DestinationBookingCTA } from "@/components/destinations/DestinationBookingCTA";
 import { Navbar } from "@/components/shared/navbar";
-import { Button } from "@/components/shared/button";
 import localFont from "next/font/local";
 import { TripPackages } from "@/components/home/trip-packages";
 import { MapPin, ChevronRight } from "lucide-react";
@@ -173,29 +173,10 @@ export default async function DestinationPage({
             {destination.description.trim()}
           </p>
 
-          <div className="mt-8 pt-6 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-              <p className="text-sm font-bold text-gray-900">Interested in visiting {destination.name}?</p>
-              <p className="text-xs text-gray-700">Include {destination.name} in your custom safari itinerary or choose a pre-designed package.</p>
-            </div>
-            <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto shrink-0">
-              <Button
-                href={`/book?intent=destination&destination=${destination.slug}`}
-                ariaLabel={`Plan custom safari to ${destination.name}`}
-                size="md"
-              >
-                Plan Safari to {destination.name} &rarr;
-              </Button>
-              <a
-                href={`https://wa.me/255658883554?text=${encodeURIComponent(`Hi Ndito Travel! I want to visit ${destination.name}.`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs text-amber-900 font-semibold underline hover:text-black"
-              >
-                Or chat on WhatsApp
-              </a>
-            </div>
-          </div>
+          <DestinationBookingCTA
+            destinationSlug={destination.slug}
+            destinationName={destination.name}
+          />
         </div>
 
         {/* Interactive Location Map */}

@@ -4,7 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mountain, Clock, TrendingUp, CheckCircle2, ChevronRight } from "lucide-react";
+import { Mountain, Clock, TrendingUp, CheckCircle2, ChevronRight, Zap } from "lucide-react";
+import { ExpressBookingModal } from "@/components/booking/ExpressBookingModal";
 import localFont from "next/font/local";
 
 const LoubagMedium = localFont({
@@ -147,115 +148,139 @@ export const kilimanjaroRoutes: RouteInfo[] = [
 
 export const KilimanjaroRoutesComparison = () => {
   const [activeRouteId, setActiveRouteId] = useState<string>("lemosho");
-  const activeRoute = kilimanjaroRoutes.find((r) => r.id === activeRouteId) || kilimanjaroRoutes[0];
+  const [isExpressModalOpen, setIsExpressModalOpen] = useState(false);
+
+  const activeRoute =
+    kilimanjaroRoutes.find((r) => r.id === activeRouteId) || kilimanjaroRoutes[0];
 
   return (
-    <section className="py-16 md:py-24 bg-[#f6f2ee] rounded-3xl p-6 md:p-12 my-12 border border-black/5">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 md:py-24 bg-[#fcfbfa]" id="routes">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-xs uppercase tracking-widest text-amber-900 font-bold bg-amber-100 px-3.5 py-1.5 rounded-full inline-block mb-3">
-            Choose Your Trail
+          <span className="text-xs uppercase tracking-widest font-extrabold text-amber-900 bg-amber-900/10 px-3 py-1 rounded-full border border-amber-900/20">
+            Compare Trail Options
           </span>
-          <h2 className={`text-3xl md:text-5xl text-gray-900 ${LoubagMedium.className}`}>
-            Kilimanjaro Trekking Routes Compared
+          <h2
+            className={`text-3xl md:text-5xl font-bold text-gray-900 mt-4 mb-4 ${LoubagMedium.className}`}
+          >
+            Find Your Ideal Summit Route
           </h2>
-          <p className={`mt-4 text-gray-700 text-base md:text-lg ${AgrandirRegular.className}`}>
-            Every route offers a unique balance of scenery, acclimatization time, difficulty, and summit success rate. Explore our guide to find your ideal trail.
+          <p className="text-gray-700 text-sm md:text-base leading-relaxed">
+            Select a route below to explore its difficulty, success rates, scenery, and terrain. Every Ndito trek includes private guides, high-ratio mountain crews, and summit oxygen safety.
           </p>
         </div>
 
-        {/* Route Selector Tabs */}
-        <div className="flex flex-wrap justify-center gap-2.5 mb-10">
+        {/* Route Selector Chips */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
           {kilimanjaroRoutes.map((route) => {
             const isActive = route.id === activeRouteId;
             return (
               <button
                 key={route.id}
                 onClick={() => setActiveRouteId(route.id)}
-                className={`px-5 py-3 rounded-2xl font-bold text-sm transition-all duration-200 flex items-center gap-2 shadow-xs ${
+                className={`p-4 rounded-2xl border text-left transition-all duration-200 flex flex-col justify-between ${
                   isActive
-                    ? "bg-amber-900 text-white shadow-md scale-105"
-                    : "bg-[#e8dfd7] text-gray-800 hover:bg-[#dfd5cb] hover:text-black"
+                    ? "bg-amber-950 text-white border-amber-900 shadow-md scale-[1.02]"
+                    : "bg-white text-gray-800 border-black/10 hover:bg-[#f6f2ee] hover:border-amber-900/30"
                 }`}
               >
-                <Mountain className={`w-4 h-4 ${isActive ? "text-amber-300" : "text-amber-900"}`} />
-                {route.name}
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs uppercase tracking-wider font-extrabold opacity-75">
+                      {route.duration}
+                    </span>
+                    {isActive && <CheckCircle2 className="w-4 h-4 text-amber-400" />}
+                  </div>
+                  <h3 className={`text-base md:text-lg font-bold ${LoubagMedium.className}`}>
+                    {route.name}
+                  </h3>
+                </div>
+                <div className="mt-3 flex items-center justify-between text-xs">
+                  <span className={isActive ? "text-amber-200 font-semibold" : "text-gray-500"}>
+                    {route.difficulty}
+                  </span>
+                  <span
+                    className={`px-2 py-0.5 rounded-full font-bold text-[10px] ${
+                      isActive
+                        ? "bg-amber-800 text-amber-100"
+                        : "bg-amber-100 text-amber-900"
+                    }`}
+                  >
+                    {route.successRate} Success
+                  </span>
+                </div>
               </button>
             );
           })}
         </div>
 
-        {/* Selected Route Spotlight Card */}
+        {/* Active Route Deep-Dive Card */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeRoute.id}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.2 }}
-            className="bg-[#e8dfd7]/90 rounded-3xl border border-black/10 overflow-hidden shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-0"
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
+            className="bg-white rounded-3xl border border-black/10 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12"
           >
-            {/* Image Column */}
-            <div className="lg:col-span-5 relative min-h-[320px] lg:min-h-[480px]">
+            {/* Left: Image & Quick Stats */}
+            <div className="lg:col-span-5 relative min-h-[280px] lg:min-h-[460px]">
               <Image
                 src={activeRoute.heroImage}
                 alt={activeRoute.name}
                 fill
-                className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-              {/* Overlay Badge */}
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <span className="bg-amber-500 text-black font-extrabold text-xs uppercase px-3 py-1 rounded-full mb-2 inline-block">
-                  Summit Success: {activeRoute.successRate}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
+                <span className="text-xs uppercase tracking-widest font-extrabold text-amber-400 bg-black/40 backdrop-blur-xs px-2.5 py-1 rounded-md border border-white/10 inline-block">
+                  {activeRoute.subtitle}
                 </span>
                 <h3 className={`text-2xl md:text-3xl font-bold ${LoubagMedium.className}`}>
-                  {activeRoute.name}
+                  {activeRoute.name} Route
                 </h3>
-                <p className="text-amber-200 text-xs md:text-sm mt-1">
-                  {activeRoute.subtitle}
-                </p>
               </div>
             </div>
 
-            {/* Details Column */}
-            <div className="lg:col-span-7 p-6 md:p-10 flex flex-col justify-between">
+            {/* Right: Details & Comparison Data */}
+            <div className="lg:col-span-7 p-6 md:p-8 flex flex-col justify-between space-y-6">
               <div>
-                {/* Metric Badges */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 bg-[#f6f2ee] p-4 rounded-2xl border border-black/5">
-                  <div className="text-center">
-                    <span className="text-xs text-gray-500 block uppercase font-semibold">Duration</span>
-                    <span className="text-sm md:text-base font-bold text-gray-900 flex items-center justify-center gap-1 mt-0.5">
+                {/* Stats Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 bg-[#f6f2ee] rounded-2xl border border-black/5 mb-6 text-center text-xs">
+                  <div>
+                    <span className="text-gray-500 block font-semibold mb-0.5">Duration</span>
+                    <span className="font-bold text-gray-900 text-sm flex items-center justify-center gap-1">
                       <Clock className="w-3.5 h-3.5 text-amber-900" />
                       {activeRoute.duration}
                     </span>
                   </div>
-                  <div className="text-center">
-                    <span className="text-xs text-gray-500 block uppercase font-semibold">Difficulty</span>
-                    <span className="text-sm md:text-base font-bold text-gray-900 flex items-center justify-center gap-1 mt-0.5">
-                      <TrendingUp className="w-3.5 h-3.5 text-amber-900" />
+                  <div>
+                    <span className="text-gray-500 block font-semibold mb-0.5">Difficulty</span>
+                    <span className="font-bold text-gray-900 text-sm flex items-center justify-center gap-1">
+                      <Mountain className="w-3.5 h-3.5 text-amber-900" />
                       {activeRoute.difficulty}
                     </span>
                   </div>
-                  <div className="text-center">
-                    <span className="text-xs text-gray-500 block uppercase font-semibold">Scenery</span>
-                    <span className="text-sm md:text-base font-bold text-amber-900 mt-0.5 block">
-                      {activeRoute.sceneryRating}
+                  <div>
+                    <span className="text-gray-500 block font-semibold mb-0.5">Success Rate</span>
+                    <span className="font-bold text-emerald-800 text-sm flex items-center justify-center gap-1">
+                      <TrendingUp className="w-3.5 h-3.5 text-emerald-700" />
+                      {activeRoute.successRate}
                     </span>
                   </div>
-                  <div className="text-center">
-                    <span className="text-xs text-gray-500 block uppercase font-semibold">Lodging</span>
-                    <span className="text-sm md:text-base font-bold text-gray-900 mt-0.5 block">
-                      {activeRoute.accommodation}
+                  <div>
+                    <span className="text-gray-500 block font-semibold mb-0.5">Scenery</span>
+                    <span className="font-bold text-amber-700 text-sm">
+                      {activeRoute.sceneryRating}
                     </span>
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className={`text-gray-800 text-sm md:text-base leading-relaxed mb-6 ${AgrandirRegular.className}`}>
+                {/* Route Description */}
+                <p className={`text-gray-700 text-sm md:text-base leading-relaxed mb-6 ${AgrandirRegular.className}`}>
                   {activeRoute.description}
                 </p>
 
@@ -275,27 +300,44 @@ export const KilimanjaroRoutesComparison = () => {
                 </div>
 
                 {/* Ideal For Note */}
-                <div className="p-3.5 bg-amber-900/10 rounded-xl border border-amber-900/20 text-xs md:text-sm text-amber-950 font-medium mb-6">
+                <div className="p-3.5 bg-amber-900/10 rounded-xl border border-amber-900/20 text-xs md:text-sm text-amber-950 font-medium">
                   <strong>Ideal For:</strong> {activeRoute.bestFor}
                 </div>
               </div>
 
               {/* Action Bar */}
-              <div className="pt-4 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="text-xs text-gray-600 font-mono">
-                  Route Path: {activeRoute.itinerarySummary}
+              <div className="pt-4 border-t border-black/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <span className="text-xs text-gray-600 font-mono truncate max-w-xs">
+                  Path: {activeRoute.itinerarySummary}
                 </span>
-                <Link
-                  href={`/book?intent=kilimanjaro&route=${encodeURIComponent(activeRoute.name)}`}
-                  className="w-full sm:w-auto bg-amber-900 hover:bg-amber-950 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 text-sm shrink-0"
-                >
-                  Book {activeRoute.name} Trek
-                  <ChevronRight className="w-4 h-4" />
-                </Link>
+                <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setIsExpressModalOpen(true)}
+                    className="w-full sm:w-auto bg-amber-950 hover:bg-amber-900 text-white font-bold px-4 py-3 rounded-xl transition-all shadow-xs flex items-center justify-center gap-1.5 text-xs"
+                  >
+                    <Zap size={14} className="text-amber-400 fill-amber-400" />
+                    Quick Inquiry
+                  </button>
+                  <Link
+                    href={`/book?intent=kilimanjaro&route=${encodeURIComponent(activeRoute.name)}`}
+                    className="w-full sm:w-auto bg-amber-900 hover:bg-amber-950 text-white font-bold px-5 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 text-xs shrink-0"
+                  >
+                    Book {activeRoute.name} Trek
+                    <ChevronRight className="w-4 h-4" />
+                  </Link>
+                </div>
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
+
+        <ExpressBookingModal
+          isOpen={isExpressModalOpen}
+          onClose={() => setIsExpressModalOpen(false)}
+          title={`Inquire About ${activeRoute.name} Trek`}
+          contextSubject={`${activeRoute.name} Kilimanjaro Trek`}
+        />
       </div>
     </section>
   );

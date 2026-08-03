@@ -89,7 +89,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/book" className="hover:text-amber-400 transition-colors">
+                  <Link href="/book?source=footer" className="hover:text-amber-400 transition-colors">
                     Book A Trip
                   </Link>
                 </li>

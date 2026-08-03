@@ -142,7 +142,7 @@ export const DiscoverSeasonPlanner = () => {
             </div>
 
             <Link
-              href="/book"
+              href="/book?intent=custom&source=season-planner"
               className="w-full bg-amber-900 hover:bg-amber-950 text-white font-bold py-3.5 px-6 rounded-xl text-sm transition-all shadow-md flex items-center justify-center gap-2"
             >
               Plan Your {activeSeason.period} Tanzania Safari

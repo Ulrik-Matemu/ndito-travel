@@ -20,8 +20,11 @@ export function BookingSuccess({ bookingId, formData }: BookingSuccessProps) {
     if (bookingId) msg += `📌 Reference ID: ${bookingId}\n`;
     if (formData) {
       msg += `👤 Name: ${formData.fullName}\n`;
+      if (formData.experienceTitle) {
+        msg += `✨ Experience Interest: ${formData.experienceTitle}\n`;
+      }
       if (formData.bookingMode === "package") {
-        msg += `🗺️ Package: ${formData.packageSlug || "Safari Package"}\n`;
+        msg += `🗺️ Package: ${formData.packageTitle || formData.packageSlug || "Safari Package"}\n`;
       } else {
         msg += `🎯 Trip Focus: ${formData.customItinerary.tripCategory.toUpperCase()}\n`;
         if (formData.customItinerary.destinations.length > 0) {
@@ -33,6 +36,9 @@ export function BookingSuccess({ bookingId, formData }: BookingSuccessProps) {
       }
       msg += `👥 Travelers: ${formData.groupSize}\n`;
       msg += `📅 Date: ${formData.flexibleDates ? "Flexible" : formData.travelDate || "TBD"}\n`;
+      if (formData.referrerPage) {
+        msg += `📎 Browsed From: ${formData.referrerPage}\n`;
+      }
     }
     msg += `\nI would love to connect with a safari specialist!`;
     return encodeURIComponent(msg);

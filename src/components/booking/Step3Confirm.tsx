@@ -77,6 +77,13 @@ export function Step3Confirm({ formData, onBack, onEditStep, onSubmit, isSubmitt
           </div>
         ) : (
           <div className="space-y-3 text-xs sm:text-sm text-gray-800">
+            {formData.experienceTitle && (
+              <div className="p-2.5 bg-amber-50 border border-amber-900/20 rounded-lg">
+                <span className="text-xs text-amber-900 font-bold block">Featured Experience Interest:</span>
+                <p className="font-bold text-gray-900 text-sm">{formData.experienceTitle}</p>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <span className="text-xs text-gray-500 block">Category:</span>

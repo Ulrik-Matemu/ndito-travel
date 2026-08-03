@@ -222,7 +222,7 @@ export const SafariActivities = () => {
 
                         <div className="pt-3 border-t border-black/10 flex justify-end">
                           <Link
-                            href="/book"
+                            href="/book?intent=custom&source=safari-activities"
                             className="bg-amber-900 hover:bg-amber-950 text-white font-bold px-5 py-2.5 rounded-xl transition-all text-xs flex items-center gap-1.5 shadow-xs"
                           >
                             Include in Safari Itinerary

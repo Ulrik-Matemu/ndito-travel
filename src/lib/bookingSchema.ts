@@ -5,6 +5,7 @@ export type BookingIntent =
   | "kilimanjaro"
   | "zanzibar"
   | "destination"
+  | "experience"
   | "custom";
 
 export type TripCategory =
@@ -30,10 +31,15 @@ export interface BookingFormData {
   bookingMode: BookingMode;
   intent: BookingIntent;
   sourceUrl?: string;
+  referrerPage?: string;
 
   // Mode 1: Selected Package
   packageSlug: string;
   packageTitle?: string;
+
+  // Mode 2: Experience Context
+  experienceSlug?: string;
+  experienceTitle?: string;
 
   // Mode 2: Custom Itinerary
   customItinerary: CustomItineraryData;
@@ -65,8 +71,12 @@ export type ValidationErrors = Partial<Record<keyof BookingFormData | "destinati
 export const initialFormData: BookingFormData = {
   bookingMode: "package",
   intent: "custom",
+  sourceUrl: "",
+  referrerPage: "",
   packageSlug: "",
   packageTitle: "",
+  experienceSlug: "",
+  experienceTitle: "",
   customItinerary: {
     tripCategory: "safari",
     destinations: ["Serengeti National Park", "Ngorongoro Crater"],

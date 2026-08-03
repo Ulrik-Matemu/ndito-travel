@@ -194,7 +194,7 @@ export default function AboutPage() {
             No upfront fees. Tell us your travel dates, group size, and dream destinations—our Arusha team will send a tailored quote within 24 hours.
           </p>
           <div className="pt-4 flex flex-wrap justify-center gap-4">
-            <Button href="/book" ariaLabel="Start planning" variant="secondary" size="md">
+            <Button href="/book?source=about" ariaLabel="Start planning" variant="secondary" size="md">
               START PLANNING ONLINE &rarr;
             </Button>
             <Button
