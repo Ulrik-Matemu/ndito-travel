@@ -105,7 +105,7 @@ export function BookingSuccess({ bookingId, formData }: BookingSuccessProps) {
           Chat on WhatsApp with Reference
         </a>
         <Link
-          href="/safaris"
+          href="/tanzania-safaris"
           className="inline-flex items-center justify-center gap-2 bg-[#231f20] hover:bg-black text-white text-sm font-semibold py-3.5 px-6 rounded-xl transition-all shadow-xs"
         >
           <Compass size={18} />

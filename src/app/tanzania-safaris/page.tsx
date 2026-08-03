@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     title: "Tanzania Safari Packages, 4x4 Fleet & Tours | Ndito Travel",
     description:
       "Book authentic Tanzania wildlife safaris with Ndito Travel. Serengeti Great Migration, Ngorongoro Big 5 tracking, custom 4x4 Land Cruisers & luxury lodges.",
-    url: "https://nditotravel.co.tz/safaris",
+    url: "https://nditotravel.co.tz/tanzania-safaris",
     images: [
       {
         url: "/photos/new-images/lion-serengeti-3.jpeg",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     images: ["/photos/new-images/lion-serengeti-3.jpeg"],
   },
   alternates: {
-    canonical: "https://nditotravel.co.tz/safaris",
+    canonical: "https://nditotravel.co.tz/tanzania-safaris",
   },
 };
 
@@ -77,7 +77,7 @@ export default function SafarisPage() {
           "@graph": [
             {
               "@type": "TouristTrip",
-              "@id": "https://nditotravel.co.tz/safaris#trip",
+              "@id": "https://nditotravel.co.tz/tanzania-safaris#trip",
               name: "Tanzania Wildlife Safari Experience",
               description:
                 "Authentic 4x4 wildlife safari tracking the Big Five across Serengeti National Park, Ngorongoro Crater, and Tarangire with native Tanzanian naturalists.",
@@ -88,14 +88,14 @@ export default function SafarisPage() {
               },
               offers: {
                 "@type": "Offer",
-                url: "https://nditotravel.co.tz/safaris",
+                url: "https://nditotravel.co.tz/tanzania-safaris",
                 priceCurrency: "USD",
                 availability: "https://schema.org/InStock",
               },
             },
             {
               "@type": "FAQPage",
-              "@id": "https://nditotravel.co.tz/safaris#faq",
+              "@id": "https://nditotravel.co.tz/tanzania-safaris#faq",
               mainEntity: safariFaqs.map((faq) => ({
                 "@type": "Question",
                 name: faq.question,

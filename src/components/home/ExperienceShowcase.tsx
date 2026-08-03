@@ -77,7 +77,7 @@ export function ExperienceShowcase() {
               </div>
             </div>
 
-            <Button href="/safaris" ariaLabel="Explore all safari packages" variant="secondary" size="md" className="w-full sm:w-auto transition-transform hover:scale-102">
+            <Button href="/tanzania-safaris" ariaLabel="Explore all safari packages" variant="secondary" size="md" className="w-full sm:w-auto transition-transform hover:scale-102">
               EXPLORE ALL SAFARIS &rarr;
             </Button>
           </ScrollReveal>

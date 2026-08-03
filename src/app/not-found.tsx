@@ -41,13 +41,13 @@ export default function NotFound() {
           {/* Useful Quick Links */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs font-bold text-gray-800">
             <Link
-              href="/safaris"
+              href="/tanzania-safaris"
               className="p-3 bg-white rounded-xl border border-black/5 hover:bg-amber-900 hover:text-white transition-all flex flex-col items-center gap-1 shadow-xs"
             >
               <MapPin size={16} /> Safaris
             </Link>
             <Link
-              href="/kilimanjaro"
+              href="/climbing-kilimanjaro"
               className="p-3 bg-white rounded-xl border border-black/5 hover:bg-amber-900 hover:text-white transition-all flex flex-col items-center gap-1 shadow-xs"
             >
               <Compass size={16} /> Kilimanjaro

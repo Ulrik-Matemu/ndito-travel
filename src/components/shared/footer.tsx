@@ -69,7 +69,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/safaris" className="hover:text-amber-400 transition-colors">
+                  <Link href="/tanzania-safaris" className="hover:text-amber-400 transition-colors">
                     Our Safaris
                   </Link>
                 </li>
@@ -79,7 +79,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/kilimanjaro" className="hover:text-amber-400 transition-colors">
+                  <Link href="/climbing-kilimanjaro" className="hover:text-amber-400 transition-colors">
                     Mount Kilimanjaro
                   </Link>
                 </li>

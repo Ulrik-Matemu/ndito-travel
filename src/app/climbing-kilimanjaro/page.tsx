@@ -3,7 +3,7 @@ import SafariHero from "@/components/safaris/hero";
 import { Navbar } from "@/components/shared/navbar";
 import { TextArea } from "@/components/shared/textArea";
 import { TripPackages } from "@/components/home/trip-packages";
-import { KilimanjaroRoutesComparison } from "@/components/kilimanjaro/routes-comparison";
+import { KilimanjaroRouteCards } from "@/components/kilimanjaro/route-cards";
 import { ClimateZonesAndSafety } from "@/components/kilimanjaro/climate-zones";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Climb Mount Kilimanjaro Tours & Routes | Ndito Travel",
     description:
       "Climb Mount Kilimanjaro with Tanzania's native expert guides. Compare Lemosho, Machame, Marangu & Northern Circuit routes with medical-grade safety.",
-    url: "https://nditotravel.co.tz/kilimanjaro",
+    url: "https://nditotravel.co.tz/climbing-kilimanjaro",
     images: [
       {
         url: "/photos/kilimanjaro-hero-nditotravel.webp",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     images: ["/photos/kilimanjaro-hero-nditotravel.webp"],
   },
   alternates: {
-    canonical: "https://nditotravel.co.tz/kilimanjaro",
+    canonical: "https://nditotravel.co.tz/climbing-kilimanjaro",
   },
 };
 
@@ -79,11 +79,11 @@ export default function KilimanjaroPage() {
           "@graph": [
             {
               "@type": "TouristDestination",
-              "@id": "https://nditotravel.co.tz/kilimanjaro#destination",
+              "@id": "https://nditotravel.co.tz/climbing-kilimanjaro#destination",
               name: "Mount Kilimanjaro",
               description:
                 "Africa's highest peak at 5,895 meters (19,341 feet), featuring 5 distinct ecological climate zones and world-famous trekking routes.",
-              url: "https://nditotravel.co.tz/kilimanjaro",
+              url: "https://nditotravel.co.tz/climbing-kilimanjaro",
               image: "https://nditotravel.co.tz/photos/kilimanjaro-hero-nditotravel.webp",
               geo: {
                 "@type": "GeoCoordinates",
@@ -94,7 +94,7 @@ export default function KilimanjaroPage() {
             },
             {
               "@type": "FAQPage",
-              "@id": "https://nditotravel.co.tz/kilimanjaro#faq",
+              "@id": "https://nditotravel.co.tz/climbing-kilimanjaro#faq",
               mainEntity: kilimanjaroFaqs.map((faq) => ({
                 "@type": "Question",
                 name: faq.question,
@@ -122,8 +122,8 @@ export default function KilimanjaroPage() {
           content="Mount Kilimanjaro, soaring to 5,895 meters (19,341 feet), is the world's highest free-standing mountain and one of the Seven Summits. Trekking through rainforests, moorlands, and alpine deserts up to Uhuru Peak's Arctic glaciers is an extraordinary journey. At Ndito Travel, our native Arusha team pairs certified Wilderness First Responder (WFR) guides with medical-grade oxygen monitoring, fair-wage porter care (KPAP compliant), and customized acclimatization profiles for maximum safety and summit success."
         />
 
-        {/* Interactive Routes Comparison */}
-        <KilimanjaroRoutesComparison />
+        {/* Route Cards display */}
+        <KilimanjaroRouteCards />
 
         {/* 5 Climate Zones & Safety Standards */}
         <ClimateZonesAndSafety />

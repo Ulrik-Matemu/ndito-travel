@@ -501,7 +501,7 @@ export default function ExperienceDetailClient({ experience }: ExperienceDetailC
               <p className="text-xs text-gray-600">Combine this experience with Tanzania’s top parks & packages</p>
             </div>
             <Link
-              href="/safaris"
+              href="/tanzania-safaris"
               className={`text-xs font-bold text-amber-900 hover:text-amber-950 underline inline-flex items-center gap-1 ${AgrandirBold.className}`}
             >
               Explore All Safaris <ArrowRight size={14} />

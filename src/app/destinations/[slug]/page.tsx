@@ -107,7 +107,7 @@ export default async function DestinationPage({
                   "@type": "ListItem",
                   position: 2,
                   name: "Safaris",
-                  item: "https://nditotravel.co.tz/safaris",
+                  item: "https://nditotravel.co.tz/tanzania-safaris",
                 },
                 {
                   "@type": "ListItem",
@@ -132,7 +132,7 @@ export default async function DestinationPage({
             </li>
             <ChevronRight size={14} className="text-gray-400" />
             <li>
-              <Link href="/safaris" className="hover:text-black hover:underline">
+              <Link href="/tanzania-safaris" className="hover:text-black hover:underline">
                 Safaris
               </Link>
             </li>

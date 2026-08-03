@@ -212,7 +212,7 @@ export const DiscoverCircuits = () => {
                   Circuit: {activeCircuit.subtitle}
                 </span>
                 <Link
-                  href="/safaris"
+                  href="/tanzania-safaris"
                   className="w-full sm:w-auto bg-amber-900 hover:bg-amber-950 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 text-sm shrink-0"
                 >
                   Explore {activeCircuit.name.split(" ")[0]} Safaris

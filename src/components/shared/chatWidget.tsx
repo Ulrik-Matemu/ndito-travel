@@ -16,7 +16,7 @@ export default function ChatWidget() {
     {
       role: "model",
       content:
-        "Jambo! 🌍 I'm the Ndito Travel virtual assistant. Ask me about our [safaris](/safaris), [Kilimanjaro treks](/kilimanjaro), wildlife, or let me help you [book a custom trip](/book).",
+        "Jambo! 🌍 I'm the Ndito Travel virtual assistant. Ask me about our [safaris](/tanzania-safaris), [Kilimanjaro treks](/climbing-kilimanjaro), wildlife, or let me help you [book a custom trip](/book).",
     },
   ]);
   const [sessionId, setSessionId] = useState<string | null>(null);

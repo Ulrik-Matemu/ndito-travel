@@ -3,6 +3,7 @@ import { safariDestinations } from "@/data/destinations";
 import { safariPackages } from "@/data/safariTrips";
 import { articles } from "@/data/articles";
 import { experiencesData } from "@/data/experiences";
+import { kilimanjaroRoutes } from "@/data/kilimanjaroRoutes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://nditotravel.co.tz";
@@ -10,9 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static pages
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: baseUrl, lastModified: new Date(), changeFrequency: "daily", priority: 1.0 },
-    { url: `${baseUrl}/safaris`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/tanzania-safaris`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/find-your-trip`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/experiences`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/kilimanjaro`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/climbing-kilimanjaro`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/zanzibar`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/discover-tanzania`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/itineraries`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
@@ -56,5 +58,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...destinationRoutes, ...experienceRoutes, ...itineraryRoutes, ...articleRoutes];
+  // Dynamic Kilimanjaro route pages
+  const kilimanjaroRoutesMapped: MetadataRoute.Sitemap = kilimanjaroRoutes.map((route) => ({
+    url: `${baseUrl}/climbing-kilimanjaro/${route.id}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...destinationRoutes,
+    ...experienceRoutes,
+    ...itineraryRoutes,
+    ...articleRoutes,
+    ...kilimanjaroRoutesMapped,
+  ];
 }

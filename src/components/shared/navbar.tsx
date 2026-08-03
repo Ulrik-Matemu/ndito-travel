@@ -73,14 +73,14 @@ export const Navbar = () => {
   }, [isOpen]);
 
   const mainNavLinks = [
-    { href: "/kilimanjaro", label: "KILIMANJARO" },
+    { href: "/climbing-kilimanjaro", label: "KILIMANJARO" },
     { href: "/zanzibar", label: "ZANZIBAR" },
     { href: "/discover-tanzania", label: "DISCOVER TANZANIA" },
   ];
 
   const mobileNavLinks = [
-    { href: "/safaris", label: "SAFARIS" },
-    { href: "/kilimanjaro", label: "KILIMANJARO" },
+    { href: "/tanzania-safaris", label: "SAFARIS" },
+    { href: "/climbing-kilimanjaro", label: "KILIMANJARO" },
     { href: "/zanzibar", label: "ZANZIBAR" },
     { href: "/discover-tanzania", label: "DISCOVER TANZANIA" },
     { href: "/articles", label: "ARTICLES & GUIDES" },
@@ -123,9 +123,9 @@ export const Navbar = () => {
           >
             <div className="flex items-center gap-1 group cursor-pointer">
               <Link
-                href="/safaris"
+                href="/tanzania-safaris"
                 className={`py-1 border-b-2 transition-all ${
-                  pathname === "/safaris" || pathname.startsWith("/destinations")
+                  pathname === "/tanzania-safaris" || pathname.startsWith("/destinations")
                     ? isTransparent
                       ? "border-amber-400 font-extrabold text-amber-400"
                       : "border-black font-extrabold text-black"
@@ -170,7 +170,7 @@ export const Navbar = () => {
                         Top Safari Destinations
                       </h3>
                       <Link
-                        href="/safaris"
+                        href="/tanzania-safaris"
                         onClick={() => setShowSafarisDropdown(false)}
                         className="text-xs font-bold text-gray-700 hover:text-black underline"
                       >

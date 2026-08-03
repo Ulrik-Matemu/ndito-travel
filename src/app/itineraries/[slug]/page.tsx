@@ -5,6 +5,8 @@ import { Navbar } from "@/components/shared/navbar";
 import SafariHero from "@/components/safaris/hero";
 import ItineraryTimeline from "@/components/shared/itineraryTimeline";
 import { Button } from "@/components/shared/button";
+import { GroupPricingTable } from "@/components/shared/GroupPricingTable";
+import { getSafariGroupPricing } from "@/lib/pricing";
 import localFont from "next/font/local";
 import { ChevronRight, CheckCircle2, XCircle, ShieldCheck } from "lucide-react";
 
@@ -189,6 +191,9 @@ export default async function SafariPage({
             </div>
           </div>
         </section>
+
+        {/* Tiered Group Pricing Table */}
+        <GroupPricingTable pricing={getSafariGroupPricing(safari)} />
 
         {/* Day-by-Day Timeline */}
         <section className="my-12">
