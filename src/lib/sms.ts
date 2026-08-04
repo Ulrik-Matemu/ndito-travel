@@ -20,7 +20,7 @@ export function formatAdminBookingSms(booking: BookingSubmission): string {
     ? "Flexible"
     : booking.travelDate || "TBD";
 
-  return `🚨 NEW NDITO BOOKING!\nRef: ${booking.id}\nGuest: ${booking.fullName} (${booking.country || "N/A"})\nPhone: ${booking.phone}\nTrip: ${tripDetail} (${booking.groupSize} pax)\nDate: ${dateStr}\nPref: ${booking.contactPreference}`;
+  return `🚨 NEW NDITO BOOKING!\nRef: ${booking.id}\nGuest: ${booking.fullName} (${booking.country || "N/A"})\nPhone: ${booking.phone}\nTrip: ${tripDetail} (${booking.groupSize} pax)\nDate: ${dateStr}\nPref: ${booking.contactPreference}\n Email: ${booking.email}`;
 }
 
 export async function sendAdminBookingSms(booking: BookingSubmission): Promise<MesejiSmsResponse> {
