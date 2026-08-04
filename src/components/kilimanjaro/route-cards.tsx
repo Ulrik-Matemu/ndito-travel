@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mountain, Clock, TrendingUp, ChevronRight } from "lucide-react";
+import { Mountain, TrendingUp, ChevronRight } from "lucide-react";
 import localFont from "next/font/local";
 import { kilimanjaroRoutes } from "@/data/kilimanjaroRoutes";
 

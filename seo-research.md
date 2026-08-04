@@ -133,7 +133,7 @@ The digital landscape for East African tourism is characterized by high customer
 
 To help an engineering team or AI coding model build the Ndito Travel platform, the site architecture must map directly to clean database models and component logic.
 
-### Database Entity Relational Data Models
+-  Database Entity Relational Data Models
 
 ```json
 {

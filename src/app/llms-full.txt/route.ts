@@ -9,7 +9,7 @@ export async function GET() {
   const packagesSection = safariPackages
     .map(
       (pkg) => `
-### ${pkg.title}
+-  ${pkg.title}
 - **Slug**: ${pkg.slug}
 - **URL**: ${baseUrl}/itineraries/${pkg.slug}
 - **Duration**: ${pkg.duration}
@@ -18,7 +18,7 @@ export async function GET() {
 - **Included Services**: ${pkg.included.join(', ')}
 - **Excluded**: ${pkg.excluded.join(', ')}
 
-#### Detailed Itinerary:
+- # Detailed Itinerary:
 ${pkg.days.map((day) => `  - **${day.title}** (${day.time}): ${day.description} [${day.accommodation}]`).join('\n')}
 `
     )
@@ -27,7 +27,7 @@ ${pkg.days.map((day) => `  - **${day.title}** (${day.time}): ${day.description} 
   const destinationsSection = safariDestinations
     .map(
       (dest) => `
-### ${dest.name}
+-  ${dest.name}
 - **Slug**: ${dest.slug}
 - **URL**: ${baseUrl}/destinations/${dest.slug}
 - **Summary**: ${dest.shortDescription}
@@ -39,7 +39,7 @@ ${pkg.days.map((day) => `  - **${day.title}** (${day.time}): ${day.description} 
   const articlesSection = articles
     .map(
       (art) => `
-### ${art.title}
+-  ${art.title}
 - **URL**: ${baseUrl}/articles/${art.slug}
 - **Summary**: ${art.excerpt}
 - **Author**: ${art.author.name} (${art.author.role})

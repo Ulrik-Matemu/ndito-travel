@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { Mountain, Clock, TrendingUp, CheckCircle2, ChevronRight, Zap } from "lucide-react";
-import localFont from "next/font/local";
+import { Mountain, Clock, TrendingUp, CheckCircle2 } from "lucide-react";
 import { Navbar } from "@/components/shared/navbar";
 import SafariHero from "@/components/safaris/hero";
 import { TextArea } from "@/components/shared/textArea";
@@ -14,14 +12,6 @@ import { RouteDetailClient } from "./RouteDetailClient";
 import { kilimanjaroRoutes } from "@/data/kilimanjaroRoutes";
 import { GroupPricingTable } from "@/components/shared/GroupPricingTable";
 import { getKilimanjaroGroupPricing } from "@/lib/pricing";
-
-const LoubagMedium = localFont({
-  src: "../../../../public/fonts/Loubag-Medium.ttf",
-});
-
-const AgrandirRegular = localFont({
-  src: "../../../../public/fonts/Agrandir-Regular.otf",
-});
 
 interface Props {
   params: Promise<{

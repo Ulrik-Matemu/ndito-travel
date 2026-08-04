@@ -16,7 +16,7 @@ const AgrandirRegular = localFont({
   src: "../../../public/fonts/Agrandir-Regular.otf",
 });
 
-import { kilimanjaroRoutes, type RouteInfo } from "@/data/kilimanjaroRoutes";
+import { kilimanjaroRoutes } from "@/data/kilimanjaroRoutes";
 
 
 export const KilimanjaroRoutesComparison = () => {
