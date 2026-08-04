@@ -26,6 +26,13 @@ export async function submitBooking(data: BookingFormData): Promise<{
     submission.firestoreDocId = firestoreResult.docId;
   }
 
+  // Trigger SMS notification to admin asynchronously (non-blocking)
+  fetch("/api/notifications/sms", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(submission),
+  }).catch((err) => console.error("⚠️ Background SMS trigger error:", err));
+
   console.log("📋 [Ndito Travel] Booking submitted successfully:", submission);
 
   // Simulate network delay for polished UX
