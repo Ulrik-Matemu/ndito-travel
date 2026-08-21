@@ -8,6 +8,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import localFont from "next/font/local";
 import { safariDestinations } from "@/data/destinations";
+import { label } from "framer-motion/client";
 
 const AgrandirBold = localFont({
   src: "../../../public/fonts/Agrandir-TextBold.otf",
@@ -23,6 +24,7 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   const isHomepage = pathname === "/";
+  const isNgorongoroPage = pathname === "/ngorongoro-crater";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -73,6 +75,7 @@ export const Navbar = () => {
   }, [isOpen]);
 
   const mainNavLinks = [
+    { href: "/ngorongoro-crater", label: "NGORONGORO CRATER"},
     { href: "/climbing-kilimanjaro", label: "KILIMANJARO" },
     { href: "/zanzibar", label: "ZANZIBAR" },
     { href: "/discover-tanzania", label: "DISCOVER TANZANIA" },
@@ -94,7 +97,8 @@ export const Navbar = () => {
     pathname === "/faq" ||
     pathname === "/about";
 
-  const isTransparent = isHomepage && !isScrolled;
+  const isTransparent = (isHomepage || isNgorongoroPage) && !isScrolled;
+
 
   return (
     <nav
@@ -113,7 +117,7 @@ export const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul
-          className={`hidden md:flex items-center justify-center gap-6 lg:gap-10 text-sm lg:text-base ${AgrandirBold.className}`}
+          className={`hidden md:flex items-center justify-center gap-6 lg:gap-10 text-sm lg:text-xs ${AgrandirBold.className}`}
         >
           {/* SAFARIS with mega dropdown */}
           <li
