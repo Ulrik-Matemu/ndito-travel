@@ -72,6 +72,8 @@ function formatCoordinate(lat: number, lng: number) {
   return `${Math.abs(lat).toFixed(4)}°${latDir}  ${Math.abs(lng).toFixed(4)}°${lngDir}`;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function DestinationPage({
   params,
 }: {
