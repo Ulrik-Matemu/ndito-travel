@@ -8,7 +8,9 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import localFont from "next/font/local";
 import { safariDestinations } from "@/data/destinations";
-import { label } from "framer-motion/client";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useTranslations } from "next-intl";
+
 
 const AgrandirBold = localFont({
   src: "../../../public/fonts/Agrandir-TextBold.otf",
@@ -25,6 +27,9 @@ export const Navbar = () => {
 
   const isHomepage = pathname === "/";
   const isNgorongoroPage = pathname === "/ngorongoro-crater";
+  const isArabicHomePage = pathname === "/ar"
+
+  const t = useTranslations("nav");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,20 +80,20 @@ export const Navbar = () => {
   }, [isOpen]);
 
   const mainNavLinks = [
-    { href: "/ngorongoro-crater", label: "NGORONGORO CRATER"},
-    { href: "/climbing-kilimanjaro", label: "KILIMANJARO" },
-    { href: "/zanzibar", label: "ZANZIBAR" },
-    { href: "/discover-tanzania", label: "DISCOVER TANZANIA" },
+    { href: "/ngorongoro-crater", label: t("ngorongoro") },
+    { href: "/climbing-kilimanjaro", label: t("kilimanjaro") },
+    { href: "/zanzibar", label: t("zanzibar") },
+    { href: "/discover-tanzania", label: t("discover-tanzania") },
   ];
 
   const mobileNavLinks = [
-    { href: "/tanzania-safaris", label: "SAFARIS" },
-    { href: "/climbing-kilimanjaro", label: "KILIMANJARO" },
-    { href: "/zanzibar", label: "ZANZIBAR" },
-    { href: "/discover-tanzania", label: "DISCOVER TANZANIA" },
-    { href: "/articles", label: "ARTICLES & GUIDES" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/about", label: "ABOUT US" },
+    { href: "/tanzania-safaris", label: t("safaris") },
+    { href: "/climbing-kilimanjaro", label: t("kilimanjaro") },
+    { href: "/zanzibar", label: t("zanzibar") },
+    { href: "/discover-tanzania", label: t("discover-tanzania") },
+    { href: "/articles", label: t("articles") },
+    { href: "/faq", label: t("faq") },
+    { href: "/about", label: t("about") },
   ];
 
   const isResourcesActive =
@@ -97,13 +102,13 @@ export const Navbar = () => {
     pathname === "/faq" ||
     pathname === "/about";
 
-  const isTransparent = (isHomepage || isNgorongoroPage) && !isScrolled;
+  const isTransparent = (isHomepage || isNgorongoroPage || isArabicHomePage) && !isScrolled;
 
 
   return (
     <nav
       aria-label="Main navigation"
-      className={`fixed top-3 left-0 right-0 z-[60] px-4 md:px-12 py-3 transition-all duration-500 ease-in-out ${
+      className={`fixed top-3 left-4 right-4 rounded-xl z-[60] px-4 md:px-12 py-3 transition-all duration-500 ease-in-out ${
         showNavbar ? "translate-y-0" : "-translate-y-full"
       } ${
         isTransparent
@@ -117,15 +122,15 @@ export const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul
-          className={`hidden md:flex items-center justify-center gap-6 lg:gap-10 text-sm lg:text-xs ${AgrandirBold.className}`}
+          className={`hidden md:flex items-center justify-center gap-6 lg:gap-6 text-sm lg:text-xs ${AgrandirBold.className}`}
         >
           {/* SAFARIS with mega dropdown */}
           <li
-            className="relative py-2"
+            className="relative py-2 rounded-xl"
             onMouseEnter={() => setShowSafarisDropdown(true)}
             onMouseLeave={() => setShowSafarisDropdown(false)}
           >
-            <div className="flex items-center gap-1 group cursor-pointer">
+            <div className="flex items-center gap-1 group cursor-pointer rounded-xl">
               <Link
                 href="/tanzania-safaris"
                 className={`py-1 border-b-2 transition-all ${
@@ -138,7 +143,7 @@ export const Navbar = () => {
                     : "border-transparent text-gray-900 hover:border-black hover:text-black"
                 } focus-visible:ring-2 focus-visible:ring-amber-800 focus-visible:outline-none rounded-xs`}
               >
-                SAFARIS
+               {t("safaris")}
               </Link>
               <button
                 type="button"
@@ -166,19 +171,19 @@ export const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.15 }}
-                  className="fixed left-0 right-0 top-[60px] w-full bg-[#f6f2ee] text-gray-900 shadow-xl border-t border-b border-black/10 py-8 px-8 md:px-16 z-50 max-h-[75vh] overflow-y-auto"
+                  className="fixed left-0 right-0 top-[60px] w-full bg-[#f6f2ee] rounded-xl text-gray-900 shadow-xl border-t border-b border-black/10 py-8 px-8 md:px-16 z-50 max-h-[75vh] overflow-y-auto"
                 >
                   <div className="max-w-7xl mx-auto">
                     <div className="flex items-center justify-between mb-6 pb-2 border-b border-black/10">
                       <h3 className="text-xs uppercase tracking-widest text-amber-900 font-bold">
-                        Top Safari Destinations
+                        {t("topSafariDestinations")}
                       </h3>
                       <Link
                         href="/tanzania-safaris"
                         onClick={() => setShowSafarisDropdown(false)}
                         className="text-xs font-bold text-gray-700 hover:text-black underline"
                       >
-                        View All Safaris &rarr;
+                        {t("viewAllSafaris")}
                       </Link>
                     </div>
 
@@ -246,7 +251,7 @@ export const Navbar = () => {
                     : "border-transparent text-gray-900 hover:border-black hover:text-black"
                 }`}
               >
-                RESOURCES
+                {t("resources")}
               </span>
               <button
                 type="button"
@@ -281,9 +286,9 @@ export const Navbar = () => {
                     className="group flex flex-col p-2.5 rounded-lg hover:bg-[#eae3dc] transition-colors"
                   >
                     <span className="text-sm font-bold text-gray-900 group-hover:text-amber-900">
-                      Travel Articles & Guides
+                      {t("articles")}
                     </span>
-                    <span className="text-xs text-gray-600">Kilimanjaro, safari costs & Migration</span>
+                    <span className="text-xs text-gray-600">{t("articlesSub")}</span>
                   </Link>
                   <Link
                     href="/faq"
@@ -291,9 +296,9 @@ export const Navbar = () => {
                     className="group flex flex-col p-2.5 rounded-lg hover:bg-[#eae3dc] transition-colors"
                   >
                     <span className="text-sm font-bold text-gray-900 group-hover:text-amber-900">
-                      Frequently Asked Questions
+                      {t("faq")}
                     </span>
-                    <span className="text-xs text-gray-600">Visas, packing, safety & booking</span>
+                    <span className="text-xs text-gray-600">{t("faqSub")}</span>
                   </Link>
                   <Link
                     href="/about"
@@ -301,9 +306,9 @@ export const Navbar = () => {
                     className="group flex flex-col p-2.5 rounded-lg hover:bg-[#eae3dc] transition-colors"
                   >
                     <span className="text-sm font-bold text-gray-900 group-hover:text-amber-900">
-                      About Ndito Travel
+                      {t("about")}
                     </span>
-                    <span className="text-xs text-gray-600">Our native Arusha team & values</span>
+                    <span className="text-xs text-gray-600">{t("aboutSub")}</span>
                   </Link>
                 </motion.div>
               )}
@@ -311,8 +316,9 @@ export const Navbar = () => {
           </li>
         </ul>
 
-        {/* Right Action: Desktop BOOK NOW CTA */}
-        <div className="hidden md:flex items-center">
+        {/* Right Action: Desktop BOOK NOW CTA & Language Switcher */}
+        <div className="hidden md:flex items-center gap-3">
+          <LanguageSwitcher isTransparent={isTransparent} />
           <Link
             href="/book?source=navbar"
             className={`text-xs lg:text-sm font-bold px-4 lg:px-5 py-2 lg:py-2.5 rounded-xl transition-all shadow-xs hover:shadow-md focus-visible:ring-2 focus-visible:ring-amber-800 focus-visible:outline-none ${
@@ -321,9 +327,10 @@ export const Navbar = () => {
                 : "bg-amber-900 hover:bg-amber-950 text-white"
             }`}
           >
-            BOOK NOW
+            {t("bookNow")}
           </Link>
         </div>
+
 
         {/* Mobile Menu Button */}
         <button
@@ -396,13 +403,17 @@ export const Navbar = () => {
                 </div>
 
                 <div className="px-6 pb-6 space-y-4">
+                  <div className="flex justify-center pb-2">
+                    <LanguageSwitcher isTransparent={false} />
+                  </div>
                   <Link
                     href="/book?source=navbar"
                     onClick={() => setIsOpen(false)}
                     className="flex items-center justify-center gap-2 w-full bg-amber-900 hover:bg-amber-950 text-white font-bold py-3 rounded-xl transition-all shadow-md"
                   >
-                    BOOK NOW
+                    {t("bookNow")}
                   </Link>
+
 
                   <div className="p-4 border-t border-black/10 bg-[#e8dfd7] rounded-xl text-xs text-gray-600 space-y-1">
                     <p className="font-semibold text-gray-900">Ndito Travel Tanzania</p>

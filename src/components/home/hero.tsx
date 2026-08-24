@@ -6,6 +6,8 @@ import localFont from "next/font/local";
 import { MapPin, Compass, Users, Map } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedCounter } from "@/components/shared/AnimatedCounter";
+import { useTranslations } from "next-intl";
+
 
 const LoubagMedium = localFont({
   src: "../../../public/fonts/Loubag-Medium.ttf",
@@ -43,6 +45,8 @@ const HERO_IMAGES = [
 ];
 
 export const Hero = () => {
+
+  const t = useTranslations("home");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -94,7 +98,7 @@ export const Hero = () => {
         <h1
           className={`text-4xl sm:text-6xl md:text-5xl lg:text-5xl tracking-tight leading-tight font-extrabold text-white drop-shadow-lg ${LoubagMedium.className}`}
         >
-          A SAFARI WITH NDITO TRAVEL
+          {t("heroTitle")}
         </h1>
 
         {/* Review Badges Pill */}
@@ -122,7 +126,7 @@ export const Hero = () => {
         </div>
       </motion.div>
 
-      {/* Integrated Bottom Stats Overlay Bar (Inspired by hero-sample.png) */}
+      {/* Integrated Bottom Stats Overlay Bar */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -134,17 +138,18 @@ export const Hero = () => {
           {/* Column 1: Info / Brand Mission */}
           <div className="pr-0 lg:pr-6 space-y-4">
             <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
-              <MapPin size={16} /> LOCAL TANZANIAN EXPERTS
+              <MapPin size={16} /> {t("localExperts")}
             </div>
             <p className={`text-xs sm:text-sm text-gray-300 leading-relaxed ${AgrandirRegular.className}`}>
-              Ndito Travel supports authentic wildlife safaris, eco-friendly conservation, and unforgettable Tanzanian adventures.
+              {t("heroSubtitle")}
             </p>
           </div>
 
+
           {/* Column 2: Stat 1 */}
           <div className="lg:border-l border-white/20 lg:pl-6 space-y-4">
-            <span className="text-xs uppercase tracking-wider text-gray-300 font-bold block flex items-center gap-1.5">
-              <Compass size={14} className="text-amber-400" /> SAFARIS COMPLETED
+            <span className="text-xs uppercase tracking-wider text-gray-300 font-bold flex items-center gap-1.5">
+              <Compass size={14} className="text-amber-400" /> {t("safarisCompleted")}
             </span>
             <div className="flex items-baseline gap-2">
               <AnimatedCounter
@@ -152,14 +157,14 @@ export const Hero = () => {
                 suffix="+"
                 className={`text-3xl sm:text-4xl lg:text-7xl font-extrabold text-white ${LoubagMedium.className}`}
               />
-              <span className="text-xs text-gray-300 font-semibold">safaris</span>
+              <span className="text-xs text-gray-300 font-semibold">{t("safarisUnit")}</span>
             </div>
           </div>
 
           {/* Column 3: Stat 2 */}
           <div className="lg:border-l border-white/20 lg:pl-6 space-y-4">
-            <span className="text-xs uppercase tracking-wider text-gray-300 font-bold block flex items-center gap-1.5">
-              <Users size={14} className="text-amber-400" /> HAPPY TRAVELERS
+            <span className="text-xs uppercase tracking-wider text-gray-300 font-bold flex items-center gap-1.5">
+              <Users size={14} className="text-amber-400" /> {t("happyTravelers")}
             </span>
             <div className="flex items-baseline gap-2">
               <AnimatedCounter
@@ -167,14 +172,14 @@ export const Hero = () => {
                 suffix="+"
                 className={`text-3xl sm:text-4xl lg:text-7xl font-extrabold text-white ${LoubagMedium.className}`}
               />
-              <span className="text-xs text-gray-300 font-semibold">guests</span>
+              <span className="text-xs text-gray-300 font-semibold">{t("guestsUnit")}</span>
             </div>
           </div>
 
           {/* Column 4: Stat 3 */}
           <div className="lg:border-l border-white/20 lg:pl-6 lg:ml-12 space-y-4">
-            <span className="text-xs uppercase tracking-wider text-gray-300 font-bold block flex items-center gap-1.5">
-              <Map size={14} className="text-amber-400" /> UNIQUE DESTINATIONS
+            <span className="text-xs uppercase tracking-wider text-gray-300 font-bold flex items-center gap-1.5">
+              <Map size={14} className="text-amber-400" /> {t("uniqueDestinations")}
             </span>
             <div className="flex items-baseline gap-2">
               <AnimatedCounter
@@ -182,7 +187,7 @@ export const Hero = () => {
                 suffix="+"
                 className={`text-3xl sm:text-4xl lg:text-7xl font-extrabold text-white ${LoubagMedium.className}`}
               />
-              <span className="text-xs text-gray-300 font-semibold">national parks</span>
+              <span className="text-xs text-gray-300 font-semibold">{t("nationalParksUnit")}</span>
             </div>
           </div>
 

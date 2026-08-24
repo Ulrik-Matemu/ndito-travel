@@ -4,6 +4,7 @@ import Image from "next/image";
 import localFont from "next/font/local";
 import { ShieldCheck, Heart, Sparkles, Clock } from "lucide-react";
 import { ScrollReveal } from "@/components/shared/ScrollReveal";
+import { useTranslations } from "next-intl";
 
 const LoubagMedium = localFont({
   src: "../../../public/fonts/Loubag-Medium.ttf",
@@ -13,54 +14,52 @@ const AgrandirRegular = localFont({
   src: "../../../public/fonts/Agrandir-Regular.otf",
 });
 
-const leftFeatures = [
-  {
-    icon: ShieldCheck,
-    title: "Expert Local Guides",
-    description:
-      "Born and raised in Tanzania, our drivers and guides know every trail, waterhole, and hidden wildlife vantage point.",
-  },
-  {
-    icon: Heart,
-    title: "Eco & Community Conscious",
-    description:
-      "We actively support local wildlife conservation initiatives and empower Tanzanian communities with fair tourism practices.",
-  },
-];
-
-const rightFeatures = [
-  {
-    icon: Sparkles,
-    title: "Fully Tailor-Made Trips",
-    description:
-      "Every itinerary is customized to your travel dates, preferred pace, budget, and specific safari dreams.",
-  },
-  {
-    icon: Clock,
-    title: "24/7 Dedicated Support",
-    description:
-      "From your initial inquiry through your flight back home, our Arusha-based team is available around the clock.",
-  },
-];
-
 export function WhyNdito() {
+  const t = useTranslations("home.whyNdito");
+
+  const leftFeatures = [
+    {
+      icon: ShieldCheck,
+      titleKey: "expertGuidesTitle" as const,
+      descKey: "expertGuidesDesc" as const,
+    },
+    {
+      icon: Heart,
+      titleKey: "ecoTitle" as const,
+      descKey: "ecoDesc" as const,
+    },
+  ];
+
+  const rightFeatures = [
+    {
+      icon: Sparkles,
+      titleKey: "tailorMadeTitle" as const,
+      descKey: "tailorMadeDesc" as const,
+    },
+    {
+      icon: Clock,
+      titleKey: "supportTitle" as const,
+      descKey: "supportDesc" as const,
+    },
+  ];
+
   return (
     <section className="py-12 md:py-20">
       {/* Centered Header */}
       <ScrollReveal direction="up" delay={0.1}>
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs uppercase font-bold tracking-widest text-amber-900 block mb-2">
-            ● WHY CHOOSE NDITO TRAVEL
+            {t("badge")}
           </span>
           <h2
             className={`text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 ${LoubagMedium.className}`}
           >
-            Crafting Unforgettable Safari Experiences
+            {t("title")}
           </h2>
           <p
             className={`text-base sm:text-lg text-gray-700 leading-relaxed ${AgrandirRegular.className}`}
           >
-            At Ndito Travel, you&apos;re not just booking a tour &mdash; you&apos;re embarking on a private, authentic journey with local experts who care.
+            {t("subtitle")}
           </p>
         </div>
       </ScrollReveal>
@@ -72,16 +71,16 @@ export function WhyNdito() {
           {leftFeatures.map((feat) => {
             const Icon = feat.icon;
             return (
-              <div key={feat.title} className="flex items-start gap-4 group">
+              <div key={feat.titleKey} className="flex items-start gap-4 group">
                 <div className="p-3 bg-[#231f20] text-amber-400 rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-xs">
                   <Icon size={24} />
                 </div>
                 <div>
                   <h3 className={`text-xl font-bold text-gray-900 mb-1 ${LoubagMedium.className}`}>
-                    {feat.title}
+                    {t(feat.titleKey)}
                   </h3>
                   <p className={`text-sm text-gray-700 leading-relaxed ${AgrandirRegular.className}`}>
-                    {feat.description}
+                    {t(feat.descKey)}
                   </p>
                 </div>
               </div>
@@ -101,7 +100,7 @@ export function WhyNdito() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <div className="absolute bottom-4 left-4 right-4 text-center text-white">
             <span className="text-xs font-semibold uppercase tracking-wider bg-amber-900/80 px-3 py-1 rounded-full backdrop-blur-xs">
-              Tarangire &bull; Serengeti &bull; Ngorongoro
+              {t("parksCaption")}
             </span>
           </div>
         </ScrollReveal>
@@ -111,16 +110,16 @@ export function WhyNdito() {
           {rightFeatures.map((feat) => {
             const Icon = feat.icon;
             return (
-              <div key={feat.title} className="flex items-start gap-4 group">
+              <div key={feat.titleKey} className="flex items-start gap-4 group">
                 <div className="p-3 bg-[#231f20] text-amber-400 rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-xs">
                   <Icon size={24} />
                 </div>
                 <div>
                   <h3 className={`text-xl font-bold text-gray-900 mb-1 ${LoubagMedium.className}`}>
-                    {feat.title}
+                    {t(feat.titleKey)}
                   </h3>
                   <p className={`text-sm text-gray-700 leading-relaxed ${AgrandirRegular.className}`}>
-                    {feat.description}
+                    {t(feat.descKey)}
                   </p>
                 </div>
               </div>

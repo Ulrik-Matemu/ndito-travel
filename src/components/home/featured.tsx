@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import localFont from "next/font/local";
+import { useTranslations } from "next-intl";
 
 const LoubagMedium = localFont({
   src: "../../../public/fonts/Loubag-Medium.ttf",
@@ -14,37 +15,38 @@ const AgrandirRegular = localFont({
   src: "../../../public/fonts/Agrandir-Regular.otf",
 });
 
-const slides = [
-  {
-    image: "/photos/hot-air-balloon-safari.webp",
-    title: "Experience Serengeti from Above",
-    desc: "Hot Air Balloon rides from $500/person.",
-  },
-  {
-    image: "/photos/zanzibar-feature.webp",
-    title: "Relax in Zanzibar’s Paradise",
-    desc: "Luxury beach resorts and turquoise waters.",
-  },
-  {
-    image: "/photos/kilimanjaro-feature.webp",
-    title: "Climb Mount Kilimanjaro",
-    desc: "Challenge yourself on Africa’s highest peak.",
-  },
-];
-
 export default function CarouselWithText() {
+  const t = useTranslations("home.featured");
   const [current, setCurrent] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const slides = [
+    {
+      image: "/photos/hot-air-balloon-safari.webp",
+      titleKey: "slide1Title" as const,
+      descKey: "slide1Desc" as const,
+    },
+    {
+      image: "/photos/zanzibar-feature.webp",
+      titleKey: "slide2Title" as const,
+      descKey: "slide2Desc" as const,
+    },
+    {
+      image: "/photos/kilimanjaro-feature.webp",
+      titleKey: "slide3Title" as const,
+      descKey: "slide3Desc" as const,
+    },
+  ];
+
   const nextSlide = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length);
-  }, []);
+  }, [slides.length]);
 
   const prevSlide = useCallback(() => {
     setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
-  }, []);
+  }, [slides.length]);
 
   useEffect(() => {
     if (!isPlaying || isHovered) {
@@ -71,43 +73,47 @@ export default function CarouselWithText() {
           onFocus={() => setIsHovered(true)}
           onBlur={() => setIsHovered(false)}
         >
-          {slides.map((slide, index) => (
-            <motion.div
-              key={index}
-              role="group"
-              aria-roledescription="slide"
-              aria-label={`${slide.title} (${index + 1} of ${slides.length})`}
-              aria-hidden={index !== current}
-              className={`absolute top-0 left-0 w-full h-full ${
-                index === current ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-              } transition-opacity duration-700`}
-            >
-              <Image
-                src={slide.image}
-                alt=""
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover brightness-85"
-                priority={index === 0}
-              />
-              {/* Dark Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          {slides.map((slide, index) => {
+            const slideTitle = t(slide.titleKey);
+            const slideDesc = t(slide.descKey);
+            return (
+              <motion.div
+                key={index}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${slideTitle} (${index + 1} of ${slides.length})`}
+                aria-hidden={index !== current}
+                className={`absolute top-0 left-0 w-full h-full ${
+                  index === current ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
+                } transition-opacity duration-700`}
+              >
+                <Image
+                  src={slide.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover brightness-85"
+                  priority={index === 0}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-              {/* Text Over Image */}
-              <div className="absolute bottom-12 left-6 right-6 text-white drop-shadow-md">
-                <h3
-                  className={`text-xl sm:text-2xl md:text-3xl font-semibold leading-snug ${LoubagMedium.className}`}
-                >
-                  {slide.title}
-                </h3>
-                <p
-                  className={`text-sm sm:text-base opacity-90 text-white/90 pt-1 ${AgrandirRegular.className}`}
-                >
-                  {slide.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+                {/* Text Over Image */}
+                <div className="absolute bottom-12 left-6 right-6 text-white drop-shadow-md">
+                  <h3
+                    className={`text-xl sm:text-2xl md:text-3xl font-semibold leading-snug ${LoubagMedium.className}`}
+                  >
+                    {slideTitle}
+                  </h3>
+                  <p
+                    className={`text-sm sm:text-base opacity-90 text-white/90 pt-1 ${AgrandirRegular.className}`}
+                  >
+                    {slideDesc}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
 
           {/* Navigation Buttons */}
           <div className="absolute inset-y-0 left-0 z-20 flex items-center justify-between w-full px-3 pointer-events-none">
@@ -159,17 +165,17 @@ export default function CarouselWithText() {
         {/* Side Text Section */}
         <div className="w-full md:w-1/2 text-center md:text-left px-2 sm:px-6 lg:px-10">
           <span className="text-xs uppercase font-bold tracking-widest text-amber-900 block mb-2">
-            Why Travel With Us
+            {t("badge")}
           </span>
           <h2
             className={`text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight text-gray-900 ${LoubagMedium.className}`}
           >
-            The best way to explore Tanzania.
+            {t("title")}
           </h2>
           <p
             className={`text-sm sm:text-base text-gray-700 mt-4 leading-relaxed ${AgrandirRegular.className}`}
           >
-            From custom wildlife game drives to private island getaways and high-altitude climbs, we ensure every detail of your East African journey is handled with excellence and passion.
+            {t("description")}
           </p>
         </div>
       </div>

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, Compass } from "lucide-react";
 import { safariPackages } from "@/data/safariTrips";
 import localFont from "next/font/local";
+import { useTranslations } from "next-intl";
 
 const AgrandirBold = localFont({
   src: "../../../public/fonts/Agrandir-TextBold.otf",
@@ -16,6 +17,7 @@ const AgrandirRegular = localFont({
 });
 
 export default function SafariCarousel() {
+  const t = useTranslations("home.tripPackages");
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -77,7 +79,7 @@ export default function SafariCarousel() {
               {/* Text Overlay */}
               <div className="absolute bottom-0 w-full text-white p-6 flex flex-col justify-end">
                 <span className="text-xs uppercase tracking-widest text-amber-300 font-semibold mb-1">
-                  Featured Safari
+                  {t("featuredSafari")}
                 </span>
                 <h3
                   className={`text-xl md:text-2xl font-semibold leading-snug mb-1 ${AgrandirBold.className}`}
@@ -95,7 +97,7 @@ export default function SafariCarousel() {
                   className="inline-flex items-center justify-center bg-white/20 hover:bg-white text-white hover:text-black border border-white/80 text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full backdrop-blur-xs transition-all w-max focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
                   aria-label={`View full itinerary for ${pkg.title}`}
                 >
-                  View Trip &rarr;
+                  {t("viewTrip")}
                 </Link>
               </div>
             </motion.article>
@@ -114,12 +116,12 @@ export default function SafariCarousel() {
               <h3
                 className={`text-xl font-bold text-amber-900 mb-2 ${AgrandirBold.className}`}
               >
-                Plan Your Own Trip
+                {t("planCustomTitle")}
               </h3>
               <p
                 className={`text-gray-700 text-sm mb-6 max-w-xs ${AgrandirRegular.className}`}
               >
-                Tell us your dream adventure and we will craft a personalized itinerary for you.
+                {t("planCustomDesc")}
               </p>
               <a
                 href="https://wa.me/255658883554"
@@ -127,7 +129,7 @@ export default function SafariCarousel() {
                 rel="noopener noreferrer"
                 className="bg-amber-900 hover:bg-black text-white text-xs sm:text-sm font-semibold px-6 py-3 rounded-full transition-colors shadow-md focus-visible:ring-2 focus-visible:ring-amber-800 focus-visible:outline-none"
               >
-                Start Customizing &rarr;
+                {t("startCustomizing")}
               </a>
             </div>
           </motion.article>
@@ -135,7 +137,7 @@ export default function SafariCarousel() {
 
         {/* Mobile swipe hint */}
         <p className="text-center text-xs mt-2 text-gray-700 md:hidden font-medium">
-          &larr; Swipe to explore more trips &rarr;
+          {t("swipeHint")}
         </p>
       </div>
     </div>
