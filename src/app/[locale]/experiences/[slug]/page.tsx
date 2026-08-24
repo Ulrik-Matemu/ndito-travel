@@ -60,6 +60,8 @@ export async function generateMetadata({ params }: ExperiencePageProps): Promise
   };
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function ExperiencePage({ params }: ExperiencePageProps) {
   const { slug } = await params;
   const experience = experiencesData[slug];

@@ -65,6 +65,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function RoutePage({ params }: Props) {
   const resolvedParams = await params;
   const route = kilimanjaroRoutes.find((r) => r.id === resolvedParams.slug);
