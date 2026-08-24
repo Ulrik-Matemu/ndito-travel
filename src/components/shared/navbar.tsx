@@ -191,7 +191,7 @@ export const Navbar = () => {
                       {safariDestinations.map((dest) => (
                         <Link
                           key={dest.slug}
-                          href={`/destinations/${dest.slug}`}
+                          href={`/en/destinations/${dest.slug}`}
                           onClick={() => setShowSafarisDropdown(false)}
                           className="group flex flex-col p-2.5 rounded-lg hover:bg-[#eae3dc] transition-colors focus-visible:ring-2 focus-visible:ring-amber-800 focus-visible:outline-none"
                         >
